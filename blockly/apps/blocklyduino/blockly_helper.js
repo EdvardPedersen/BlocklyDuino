@@ -239,22 +239,38 @@ function uploadCode(code, callback) {
             break;
         };
         
-        callback(status, errorInfo);
+        callback(status, errorInfo, request);
     };
 
     request.open(method, url, async);
     request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
     request.send(code);	     
 }
+function download(filename, data) {
+    console.log("Downloading file: " + data);
+    var element = document.createElement('a');
 
+    var data_blob = new Blob([data], {type: "octet-stream"});
+    var data_url = URL.createObjectURL(data_blob);
+    element.setAttribute('href', data_url);
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    URL.revokeObjectURL(data_blob);
+
+    document.body.removeChild(element);
+}
 function uploadClick() {
     var code = Blockly.Arduino.workspaceToCode();
 
-    alert("Ready to upload to Arduino.");
-    
-    uploadCode(code, function(status, errorInfo) {
+    uploadCode(code, function(status, errorInfo, request) {
         if (status == 200) {
-            alert("Program uploaded ok");
+	    download("arduino.hex", request.response);
+	    upload_to_arduino(request);
         } else {
             alert("Error uploading program: " + errorInfo);
         }
@@ -264,9 +280,43 @@ function uploadClick() {
 function resetClick() {
     var code = "void setup() {} void loop() {}";
 
-    uploadCode(code, function(status, errorInfo) {
+    uploadCode(code, function(status, errorInfo, request) {
         if (status != 200) {
             alert("Error resetting program: " + errorInfo);
         }
     });
+}
+
+function upload_to_arduino(data) {
+    var url = "http://127.0.0.1:12344/";
+    var method = "POST";
+
+    var async = true;
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+        if (request.readyState != 4) {
+            return;
+        }
+
+        var status = parseInt(request.status); // HTTP response status, e.g., 200 for "200 OK"
+        var errorInfo = null;
+        switch (status) {
+        case 200:
+            break;
+        case 0:
+            errorInfo = "code 0\n\nCould not connect to server at " + url + ".  Is the local web server running?";
+            break;
+        default:
+            errorInfo = "code " + status + "\n\nUnknown error.";
+            break;
+        };
+    };
+
+    request.open(method, url, async);
+    request.setRequestHeader("Content-Type", "application/octet-stream");
+    console.log(data);
+    data_to_send = JSON.stringify({hex: data.response, arduino: 'uno'});
+    request.send(data_to_send);
 }
