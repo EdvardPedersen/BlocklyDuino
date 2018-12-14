@@ -35,7 +35,7 @@ def get_arduino_command():
                 "c:\Program Files (x86)\Arduino\Arduino.exe"
             ]
         else:
-            arduino_cmd_guesses = []
+            arduino_cmd_guesses = ["/snap/bin/arduino-mhall119.arduino"]
 
         for guess in arduino_cmd_guesses:
             if os.path.exists(guess):
@@ -50,7 +50,7 @@ def get_arduino_command():
 
 def guess_port_name():
     """Attempt to guess a port name that we might find an Arduino on."""
-    portname = None
+    portname = "0"
     if platform.system() == "Windows":
         import _winreg as winreg
         key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "HARDWARE\\DEVICEMAP\\SERIALCOMM")
@@ -63,7 +63,7 @@ def guess_port_name():
     else:
         # We'll guess it's the first non-bluetooth tty. or cu. prefixed device
         ttys = [filename for filename in os.listdir("/dev")
-                if (filename.startswith("tty.") or filename.startswith("cu."))
+                if (filename.startswith("tty") or filename.startswith("cu."))
                 and not "luetooth" in filename]
         ttys.sort(key=lambda k:(k.startswith("cu."), k))
         if ttys:
@@ -110,38 +110,48 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                         
             print "sketch to upload: " + text
 
+            tempfile.tempdir = "/home/edvard/"
+
             dirname = tempfile.mkdtemp()
             sketchname = os.path.join(dirname, os.path.basename(dirname)) + ".ino"
             f = open(sketchname, "wb")
             f.write(text + "\n")
             f.close()
 
-            print "created sketch at %s" % (sketchname,)
+            print "created sketch at %s" % (sketchname)
         
             # invoke arduino to build/upload
             compile_args = [
                 options.cmd or get_arduino_command(),
-                "--upload",
-                "--port",
-                options.port or guess_port_name(),
+                "--verify",
+                sketchname,
+                "--pref",
+                "build.path=" + dirname + "_build"
             ]
             if options.board:
                 compile_args.extend([
                     "--board",
                     options.board
                 ])
-            compile_args.append(sketchname)
+            print compile_args
 
             print "Uploading with %s" % (" ".join(compile_args))
             rc = subprocess.call(compile_args)
 
             if not rc == 0:
-                print "arduino --upload returned " + `rc`                            
+                print "arduino returned " + `rc`
                 self.send_response(400)
             else:
                 self.send_response(200)
                 self.send_header('Access-Control-Allow-Origin', '*')
+                self.send_header('Content-type', 'application/octet-stream')
+                self.send_header('Content-disposition', 'attachment; filename="program.hex"')
                 self.end_headers()
+
+                with open(dirname + "_build/" + os.path.basename(dirname) + ".ino.with_bootloader.hex", 'r') as f:
+                  self.wfile.write(f.read())
+                  f.seek(0)
+                  print("Sent: {}".format(f.read()))
         else:
             self.send_response(400)
 
