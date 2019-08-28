@@ -109,17 +109,14 @@ void loop() {
     // No valid position.
     // I.e. no GPS fix.
     Serial.println("No valid GPS position");
-    digitalWrite(LED_RED, HIGH);
-    delay(500);
-    digitalWrite(LED_RED, LOW);
+    blink_led(LED_RED);
+
     // Wait 2.5 seconds until next try.
     delay(2500);
     continue;
   }
   else {
-    digitalWrite(LED_GREEN, HIGH);
-    delay(500);
-    digitalWrite(LED_GREEN, LOW);
+    blink_led(LED_GREEN);
   }
 
   // Print information to the SD
@@ -146,8 +143,14 @@ void loop() {
   // Print to SD
   print_readings_to_sd(year, month, day, hour, minute, second, lat, lng, pm10, pm25, humidity, temperature);
 
-  // Wait 2.5 seconds until next reading.
+  // Wait 2.5 seconds until next value readings.
   delay(2500);
+}
+
+void blink_led(int lightPin, int delayTime = 500) {
+  digitalWrite(lightPin, HIGH);
+  delay(delayTime);
+  digitalWrite(lightPin, LOW);
 }
 
 void print_debug_humidity_temperature(float humidity, float temperature) {
