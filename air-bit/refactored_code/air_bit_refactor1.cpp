@@ -36,13 +36,32 @@ SoftwareSerial gpsCom(GPS_RX, GPS_TX);
 TinyGPSPlus gps;
 
 void setup() {
+  // Pins
+  // NOTE! SD pin is placed into communication as the initialization method used is named "begin".
+  // NOTE! This is used on other communication initializations as well.
+  setup_pins();
+
+  // Communication
+  setup_communication();
+
+
+  // Define filename
+  char filename[] = "testfile.txt";
+
+  // File Writing setup
+  setup_fileWriting(filename);
+}
+
+void setup_pins() {
   // Activate control over LEDs
   pinMode(LED_RED, OUTPUT);
   pinMode(LED_GREEN, OUTPUT);
 
   // Activate CS-Pin control
   pinMode(SD_CS_PIN, OUTPUT);
+}
 
+void setup_communication() {
   // Initialize Dust sensor communication
   sds.begin(PM_TX, PM_RX);
 
@@ -52,10 +71,9 @@ void setup() {
 
   // Startup SD-card reader
   SD.begin(SD_CS_PIN);
+}
 
-  // Define filename
-  char filename[] = "testfile.txt";
-
+void setup_fileWriting(char[] filename) {
   if (SD.exists(filename)) {
     // Open existing file for writing and append
     file = SD.open(filename, O_WRITE | O_APPEND);
@@ -65,7 +83,6 @@ void setup() {
     file = SD.open(filename, O_CREAT | O_WRITE);
     Serial.println("Dette er den første linjen i filen.");
   }
-
 }
 
 void loop() {
