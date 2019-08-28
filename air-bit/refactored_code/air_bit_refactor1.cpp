@@ -44,7 +44,6 @@ void setup() {
   // Communication
   setup_communication();
 
-
   // Define filename
   char filename[] = "testfile.txt";
 
@@ -86,22 +85,6 @@ void setup_fileWriting(char[] filename) {
 }
 
 void loop() {
-  // Temperature
-
-  // Declare variables for sensor readings
-  float temperature = 0;
-  float humidity = 0;
-  // Take readings from sensor
-  temperature = dht22.readTemperature();
-  humidity = dht22.readHumidity();
-
-  // Dust
-  float pm25, pm10;
-  int error;
-  do {
-    error = sds.read(&pm25, &pm10);
-  } while (error != 0);
-
   // GPS
   gpsCom.listen();
   wait_on_gps_encoding();
@@ -122,6 +105,21 @@ void loop() {
   else {
     blink_led(LED_GREEN);
   }
+
+  // Temperature
+  // Declare variables for sensor readings
+  float temperature = 0;
+  float humidity = 0;
+  // Take readings from sensor
+  temperature = dht22.readTemperature();
+  humidity = dht22.readHumidity();
+
+  // Dust
+  float pm25, pm10;
+  int error;
+  do {
+    error = sds.read(&pm25, &pm10);
+  } while (error != 0);
 
   // Print information to the SD
   /*
