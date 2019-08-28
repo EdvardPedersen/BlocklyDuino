@@ -104,21 +104,8 @@ void loop() {
 
   // GPS
   gpsCom.listen();
-  bool gpsEncodeComplete = false;
-  do {
-    if (!gpsCom.available()) {
-      // No new data available.
-      // Immediately jump to next iteration
-      continue;
-    }
-    gpsEncodeComplete = gps.encode(gpsCom.read());
-    if (!gpsEncodeComplete) {
-      // Data is incomplete, 
-      // Jump to next iteration and try again
-      continue;
-    }
-  } while (!gpsEncodeComplete); // Loop until gps data was successfully read and encoded from GPS module
-
+  wait_on_gps_encoding();
+  
   bool gpsValid = gps.location.isValid();
   bool gpsUpdated = gps.location.isUpdated();
   bool isUseful = gpsValid && gpsUpdated;
@@ -162,6 +149,23 @@ void loop() {
 
   // Wait 2.5 seconds until next value readings.
   delay(2500);
+}
+
+void wait_on_gps_encoding() {
+  bool gpsEncodeComplete = false;
+  do {
+    if (!gpsCom.available()) {
+      // No new data available.
+      // Immediately jump to next iteration
+      continue;
+    }
+    gpsEncodeComplete = gps.encode(gpsCom.read());
+    if (!gpsEncodeComplete) {
+      // Data is incomplete, 
+      // Jump to next iteration and try again
+      continue;
+    }
+  } while (!gpsEncodeComplete); // Loop until gps data was successfully read and encoded from GPS module
 }
 
 void blink_led(int lightPin, int delayTime = 500) {
