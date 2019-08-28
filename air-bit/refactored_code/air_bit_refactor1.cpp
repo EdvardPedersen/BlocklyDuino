@@ -105,7 +105,7 @@ void loop() {
   // GPS
   gpsCom.listen();
   wait_on_gps_encoding();
-  
+
   bool gpsValid = gps.location.isValid();
   bool gpsUpdated = gps.location.isUpdated();
   bool isUseful = gpsValid && gpsUpdated;
@@ -142,7 +142,7 @@ void loop() {
   double lng = gps.location.lng();
 
   // Print Debug
-  print_debug_readings(humidity, temperature, pm10, pm25, gps);
+  print_debug_readings(humidity, temperature, pm10, pm25);
 
   // Print to SD
   print_readings_to_sd(year, month, day, hour, minute, second, lat, lng, pm10, pm25, humidity, temperature);
@@ -194,7 +194,7 @@ void print_debug_dust(float pm10, float pm25) {
   Serial.println();
 }
 
-void print_debug_gps(TinyGPSPlus gps) {
+void print_debug_gps() {
   Serial.print("Time: ");
   Serial.print(gps.date.day());
   Serial.print(".");
@@ -221,10 +221,10 @@ void print_debug_gps(TinyGPSPlus gps) {
   Serial.println();
 }
 
-void print_debug_readings(float humidity, float temperature, float pm10, float pm25, TinyGPSPlus gps) {
+void print_debug_readings(float humidity, float temperature, float pm10, float pm25) {
   print_debug_humidity_temperature(humidity, temperature);
   print_debug_dust(pm10, pm25);
-  print_debug_gps(gps);
+  print_debug_gps();
 }
 
 void print_readings_to_sd(int year, int month, int day, int hour, int minute, int second,
