@@ -279,13 +279,13 @@ void print_readings_to_sd(int year, int month, int day, int hour, int minute, in
   file.flush(); // Force saving data to SD-card
 
   // Print: Latitude,
-  file.print(gps.location.lat(), 6); // Latitude in degrees
+  file.print(lat, 6); // Latitude in degrees
   
   file.print(",")
   file.flush(); // Force saving data to SD-card
 
   // Print: Longitude,
-  file.print(gps.location.lng(), 6); // Longitude in degrees
+  file.print(lng, 6); // Longitude in degrees
 
   file.print(",")
   file.flush(); // Force saving data to SD-card
