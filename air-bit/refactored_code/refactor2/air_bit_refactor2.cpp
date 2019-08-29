@@ -6,6 +6,7 @@
 
 using namespace airbit;
 #include "AirBitDateTimeClass.h"
+#include "AirBitUtilsClass.h"
 
 // Temperature PIN
 #define DHTPIN 9
@@ -40,6 +41,7 @@ TinyGPSPlus gps;
 
 // Util
 AirBitDateTimeClass airTime;
+AirBitUtilsClass airUtils;
 
 void setup() {
   // Pins
@@ -173,90 +175,16 @@ void blink_led(int lightPin, int delayTime = 500) {
   digitalWrite(lightPin, LOW);
 }
 
-void print_debug_humidity_temperature(float humidity, float temperature) {
-  Serial.print("Humidity: ");
-  Serial.print(humidity);
-  Serial.print("%");
-  Serial.print("\t");
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.print("°C");
-  Serial.println();
-}
-
-void print_debug_dust(float pm10, float pm25) {
-  Serial.print("PM10: ");
-  Serial.print(pm10);
-  Serial.print("\t");
-  Serial.print("PM25: ");
-  Serial.print(pm25);
-  Serial.println();
-}
-
-void print_debug_gps() {
-  Serial.print("Time: ");
-  airTime.PrintDebug();
-
-  Serial.print("\t");
-
-  Serial.print("Latitude: ");
-  Serial.print(gps.location.lat(), 6); // Latitude in degrees
-  Serial.print("\t");
-  Serial.print("Longitude: ");
-  Serial.print(gps.location.lng(), 6); // Longitude in degrees
-
-  Serial.println();
-}
-
-void print_debug_readings(float humidity, float temperature, float pm10, float pm25) {
-  print_debug_humidity_temperature(humidity, temperature);
-  print_debug_dust(pm10, pm25);
-  print_debug_gps();
+void print_debug_readings(float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
+  airUtils.PrintDebugReadings(float humidity, float temperature, float pm10, float pm25, double lat, double lng);
 }
 
 void print_readings_to_sd(AirBitDateTimeClass airTime, double lat, double lng,
    float pm10, float pm25, float humidity, float temperature ) {
   
-  // Print: Time,
-  airTime.PrintFormat(file);
-
-  file.print(",")
-  file.flush(); // Force saving data to SD-card
-
-  // Print: Latitude,
-  file.print(gps.location.lat(), 6); // Latitude in degrees
+  airUtils.PrintReadingsToSd(AirBitDateTimeClass airTime, double lat, double lng,
+   float pm10, float pm25, float humidity, float temperature);
   
-  file.print(",")
-  file.flush(); // Force saving data to SD-card
-
-  // Print: Longitude,
-  file.print(gps.location.lng(), 6); // Longitude in degrees
-
-  file.print(",")
-  file.flush(); // Force saving data to SD-card
-
-  // Print: PM10,
-  file.print(pm10);
-  
-  file.print(",")
-  file.flush(); // Force saving data to SD-card
-
-  // Print: PM25,
-  file.print(pm25);
-
-  file.print(",")
-  file.flush(); // Force saving data to SD-card
-
-  // Print: Humidity,
-  file.print(humidity);
-
-  file.print(",")
-  file.flush(); // Force saving data to SD-card
-
-  // Print: Temperature\n
-  file.print(temperature);
-
-  file.println()
   file.flush(); // Force saving data to SD-card
 
 }
