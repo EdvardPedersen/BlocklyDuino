@@ -61,6 +61,12 @@ class AirBitUtilsClass {       // The class
       print_debug_gps(lat, lng);
     }
 
+    void BlinkLed(int lightPin, int delayTime = 500) {
+      digitalWrite(lightPin, HIGH);
+      delay(delayTime);
+      digitalWrite(lightPin, LOW);
+    }
+
   private:
     void PrintDebugHumidityTemperature(float humidity, float temperature) {
       Serial.print("Humidity: ");

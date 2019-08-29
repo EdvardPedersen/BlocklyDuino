@@ -18,6 +18,7 @@ class AirBitUtilsClass {       // The class
 
     void PrintDebugReadings(float humidity, float temperature, float pm10, float pm25, double lat, double lng);
 
+    void BlinkLed(int lightPin, int delayTime = 500);
   private:
     void PrintDebugHumidityTemperature(float humidity, float temperature);
     void PrintDebugDust(float pm10, float pm25);

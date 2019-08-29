@@ -104,14 +104,14 @@ void loop() {
     // No valid position.
     // I.e. no GPS fix.
     Serial.println("No valid GPS position");
-    blink_led(LED_RED);
+    airUtils.BlinkLed(LED_RED);
 
     // Wait 2.5 seconds until next try.
     delay(2500);
     continue;
   }
   else {
-    blink_led(LED_GREEN);
+    airUtils.BlinkLed(LED_GREEN);
   }
 
   // Temperature
@@ -167,12 +167,6 @@ void wait_on_gps_encoding() {
       continue;
     }
   } while (!gpsEncodeComplete); // Loop until gps data was successfully read and encoded from GPS module
-}
-
-void blink_led(int lightPin, int delayTime = 500) {
-  digitalWrite(lightPin, HIGH);
-  delay(delayTime);
-  digitalWrite(lightPin, LOW);
 }
 
 void print_debug_readings(float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
