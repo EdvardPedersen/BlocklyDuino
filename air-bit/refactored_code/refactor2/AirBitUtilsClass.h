@@ -5,6 +5,7 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
+#include "AirBitDateTimeClass"
 
 using namespace airbit;
 
@@ -15,6 +16,7 @@ class AirBitUtilsClass {       // The class
 
     void PrintDebugReadings(float humidity, float temperature, float pm10, float pm25, double lat, double lng);
 
+    AirBitDateTimeClass GetDateTime(TinyGPSPlus gps);
     void BlinkLed(int lightPin, int delayTime = 500);
   private:
     void PrintDebugHumidityTemperature(float humidity, float temperature);

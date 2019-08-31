@@ -12,15 +12,6 @@ class AirBitDateTimeClass {       // The class
     int minute;
     int second;
 
-    void SetTime(TinyGPSPlus gps) {
-      day = gps.date.day();
-      month = gps.date.month();
-      year = gps.date.year();
-      hour = gps.time.hour();
-      minute = gps.time.minute();
-      second = gps.time.second();
-    }
-
     void PrintDebug() {
       Serial.print(gps.date.day());
       Serial.print(".");

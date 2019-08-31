@@ -17,7 +17,6 @@ class AirBitDateTimeClass {       // The class
         int minute;
         int second;
 
-        void SetTime(TinyGPSPlus gps);
         void PrintDebug();
         void PrintFormated(File file);
 };

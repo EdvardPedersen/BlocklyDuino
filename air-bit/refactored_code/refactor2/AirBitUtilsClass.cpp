@@ -56,6 +56,18 @@ class AirBitUtilsClass {       // The class
       print_debug_gps(lat, lng);
     }
 
+    AirBitDateTimeClass GetDateTime(TinyGPSPlus gps) {
+      AirBitDateTimeClass DateTime;
+      DateTime.day = gps.date.day();
+      DateTime.month = gps.date.month();
+      DateTime.year = gps.date.year();
+      DateTime.hour = gps.time.hour();
+      DateTime.minute = gps.time.minute();
+      DateTime.second = gps.time.second();
+
+      return DateTime;
+    }
+
     void BlinkLed(int lightPin, int delayTime = 500) {
       digitalWrite(lightPin, HIGH);
       delay(delayTime);

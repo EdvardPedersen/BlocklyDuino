@@ -136,7 +136,7 @@ void loop() {
   */
 
   // Set time variables
-  airTime.SetTime(gps);
+  airTime = airUtils.GetDateTime(gps);
 
   // Set Longitude and Latitude
   double lat = gps.location.lat();
