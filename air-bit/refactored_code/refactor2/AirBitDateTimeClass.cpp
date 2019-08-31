@@ -1,7 +1,6 @@
 #include "AirBitDateTimeClass.h"
 #include <SD.h>
 #include <SoftwareSerial.h>
-#include <TinyGPS++.h>
 
 class AirBitDateTimeClass {       // The class
   public:             // Access specifier
@@ -13,19 +12,17 @@ class AirBitDateTimeClass {       // The class
     int second;
 
     void PrintDebug() {
-      Serial.print(gps.date.day());
+      Serial.print(day);
       Serial.print(".");
-      Serial.print(gps.date.month());
+      Serial.print(month);
       Serial.print(".");
-      Serial.print(gps.date.year());
+      Serial.print(year);
       Serial.print(" ");
-      Serial.print(gps.time.hour());
+      Serial.print(hour);
       Serial.print(":");
-      Serial.print(gps.time.minute());
+      Serial.print(minute);
       Serial.print(":");
-      Serial.print(gps.time.second());
-      Serial.print(".");
-      Serial.print(gps.time.centisecond());
+      Serial.print(second);
     }
 
     void PrintFormated(File file)  {
