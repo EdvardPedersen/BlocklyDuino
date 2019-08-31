@@ -10,9 +10,6 @@ using namespace airbit;
 
 class AirBitUtilsClass {       // The class
   public:             // Access specifier
-    void PrintDebug(AirBitDateTimeClass airTime, double lat, double lng,
-      float pm10, float pm25, float humidity, float temperature );
-
     void PrintReadingsToSd(File file, AirBitDateTimeClass airTime, double lat, double lng,
       float pm10, float pm25, float humidity, float temperature );
 
