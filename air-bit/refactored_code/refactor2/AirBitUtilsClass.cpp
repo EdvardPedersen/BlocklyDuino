@@ -2,6 +2,7 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
+#include "AirBitDateTimeClass"
 
 class AirBitUtilsClass {       // The class
   public:             // Access specifier
