@@ -22,7 +22,7 @@
 // SD Pin
 #define SD_CS_PIN 10
 
-// Temperature
+// Temperature and Humidity
 DHT dht22(DHTPIN, DHT22);
 
 // SD

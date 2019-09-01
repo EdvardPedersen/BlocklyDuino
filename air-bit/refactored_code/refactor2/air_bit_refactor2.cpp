@@ -8,7 +8,7 @@ using namespace airbit;
 #include "AirBitDateTimeClass.h"
 #include "AirBitUtilsClass.h"
 
-// Temperature PIN
+// Temperature and Humidity PIN
 #define DHTPIN 9
 
 // GPS Pins
