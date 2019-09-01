@@ -2,9 +2,29 @@
 <head>
   <meta charset="utf-8">
   <title>BlocklyDuino</title>
-  <script type="text/javascript" src="../../blockly_compressed.js"></script>
-  <script type="text/javascript" src="../../blocks_compressed.js"></script>
+  <script type="text/javascript" src="../../blockly_uncompressed.js"></script>
+  <!-- <script type="text/javascript" src="../../blocks_compressed.js"></script> -->
+  <script src="../../blocks/base.js"></script>
+  <script src="../../blocks/logic.js"></script>
+  <script src="../../blocks/loops.js"></script>
+  <script src="../../blocks/math.js"></script>
+  <script src="../../blocks/text.js"></script>
+  <script src="../../blocks/lists.js"></script>
+  <script src="../../blocks/colour.js"></script>
+  <script src="../../blocks/variables.js"></script>
+  <script src="../../blocks/procedures.js"></script>
+  <script src="../../blocks/grove.js"></script>
+  <script src="../../blocks/airbit.js"></script>
   <script type="text/javascript" src="../../arduino_compressed.js"></script>
+  <script src="../../generators/arduino/airbit.js"></script>
+  <script src="../../generators/arduino/base.js"></script>
+  <script src="../../generators/arduino/control.js"></script>
+  <script src="../../generators/arduino/grove.js"></script>
+  <script src="../../generators/arduino/logic.js"></script>
+  <script src="../../generators/arduino/math.js"></script>
+  <script src="../../generators/arduino/procedures.js"></script>
+  <script src="../../generators/arduino/text.js"></script>
+  <script src="../../generators/arduino/variables.js"></script>
   <script type="text/javascript" src="../../msg/js/en.js"></script>
   <script type="text/javascript" src="Blob.js"></script>
   <script type="text/javascript" src="spin.js"></script>
@@ -444,6 +464,19 @@ function init() {
     </category>
     <category name="Grove Motor">
       <block type="grove_motor_shield"></block>
+    </category>
+    <category name="Air:Bit">
+      <block type="airbit_blink_led"></block>
+      <block type="airbit_logical_and"></block>
+      <block type="airbit_continue"></block>
+      <block type="airbit_get_datetime"></block>
+      <block type="airbit_get_gps"></block>
+      <block type="airbit_gps_location_is_valid"></block>
+      <block type="airbit_gps_location_is_updated"></block>
+      <block type="airbit_gps_location_latitude"></block>
+      <block type="airbit_gps_location_longitude"></block>
+      <block type="airbit_dht_temperature"></block>
+      <block type="airbit_dht_humidity"></block>
     </category>
   </xml>
 </body>
