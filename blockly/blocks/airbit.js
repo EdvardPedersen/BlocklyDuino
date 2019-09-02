@@ -50,7 +50,7 @@ Blockly.Blocks['airbit_continue'] = {
     this.appendDummyInput()
       .appendField("Restart Loop");
     this.setPreviousStatement(true, null);
-    this.setTooltip('Restarts the parent loop. Work already done will not be reset.');
+    this.setTooltip('Goes to the start of the parent loop. Work already done will not be reset.');
   }
 };
 
