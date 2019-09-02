@@ -13,7 +13,7 @@ Blockly.Blocks['airbit_blink_led'] = {
       .appendField("LED")
       .appendField(new Blockly.FieldImage("https://www.clipartwiki.com/clipimg/detail/70-701978_lights-clipart-led-diodes-led.png", 64, 64))
       .appendField("PIN#")
-      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN")
+      .appendField(new Blockly.FieldDropdown([["GREEN", "LED_GREEN"], ["RED", "LED_RED"]]), "PIN")
     this.appendValueInput("DELAY_TIME", 'Number')
       .setCheck('Number')
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -174,3 +174,45 @@ Blockly.Blocks['airbit_dht_humidity'] = {
     this.setTooltip('Returns the humidity reading from the DHT sensor. Return value is a float.');
   }
 };
+
+Blockly.Blocks['airbit_sds_pm_readings'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.appendDummyInput()
+      .appendField("SDS Dust Sensor")
+      .appendField(new Blockly.FieldImage("https://www.digitalimpuls.no/Media/Cache/Images/1/0/WEB_Image%20Partikkelm%C3%A5ler%20%20Nova%20PM%20sensor%20SDS011%205V%201445872001888984.Png", 64, 64))
+      .appendField("PIN_RX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PM_TX")
+      .appendField("PIN_TX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PM_RX")
+    this.appendValueInput("PM25")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("pm25 Variable Name");
+    this.appendValueInput("PM10")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("pm10 Variable Name");
+    this.setOutput(true, 'Number');
+    this.setTooltip('Non-contact distance measurement module');
+  }
+};
+
+Blockly.Blocks['airbit_sd_store_readings'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.appendDummyInput()
+      .appendField("SD Storage")
+      .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))
+      .appendField("SD PIN")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN")
+    this.appendValueInput("FILENAME")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Name of file to write to");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Writes all readings to a given file.');
+  }
+};
+

@@ -6,7 +6,13 @@ goog.require('Blockly.Arduino');
 Blockly.Arduino.airbit_blink_led = function() {
   var dropdown_pin = this.getFieldValue('PIN');
   var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC) || '500';
-  Blockly.Arduino.setups_['setup_led_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
+
+  Blockly.Arduino.definitions_['define_led_red'] = '#define LED_RED A1';
+  Blockly.Arduino.definitions_['define_led_green'] = '#define LED_GREEN A0\n';
+
+  Blockly.Arduino.setups_['setup_led_'+dropdown_pin.toString().toLowerCase()] 
+    = 'pinMode('+dropdown_pin+', OUTPUT);';
+
   var code = 'digitalWrite('+dropdown_pin+', HIGH);\n'
   code += 'delay('+delay_time+');\n';
   code += 'digitalWrite('+dropdown_pin+', LOW);\n'
@@ -30,10 +36,10 @@ Blockly.Arduino.airbit_continue = function() {
 
 Blockly.Arduino.airbit_get_datetime = function() {
   var gps = Blockly.Arduino.valueToCode(this, 'GPS', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h"';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h"';
-  Blockly.Arduino.definitions_['define_airbitdatetime'] = 'AirBitDateTimeClass airbitDateTime';
-  Blockly.Arduino.definitions_['define_airbitutils'] = 'AirBitUtilsClass airbitUtils';
+  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['var_airbitdatetime'] = 'AirBitDateTimeClass airbitDateTime';
+  Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils\n';
   var code = 'airbitDateTime = airbitUtils.GetDateTime('+gps+');\n'
   return code;
 };
@@ -104,3 +110,69 @@ Blockly.Arduino.airbit_dht_humidity = function(){
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+
+Blockly.Arduino.airbit_sds_pm_readings = function(){
+  Blockly.Arduino.definitions_['define_sds011'] = '#include <SDS011.h>\n';
+
+  var tx = Blockly.Arduino.valueToCode(this, 'PM_TX', Blockly.Arduino.ORDER_ATOMIC);
+  var rx = Blockly.Arduino.valueToCode(this, 'PM_RX', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['define_pmtx'] = '#define PM_TX '+tx;
+  Blockly.Arduino.definitions_['define_pmrx'] = '#define PM_RX '+rx+'\n';
+
+  Blockly.Arduino.definitions_['var_sds011'] = 'SDS011 sds;';
+  
+  Blockly.Arduino.setups_['setup_sds011'] = 'sds.begin(PM_TX, PM_RX);';
+
+  var pm25 = Blockly.Arduino.valueToCode(this, 'PM25', Blockly.Arduino.ORDER_ATOMIC);
+  var pm10 = Blockly.Arduino.valueToCode(this, 'PM10', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = "sds.read(&"+pm25.toString().split('"').join('');
+  code += ", &"+pm10.toString().split('"').join('')+");";
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.airbit_sd_store_readings = function(){
+  Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
+  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+
+  var pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['define_sdpin'] = '#define SD_CS_PIN '+pin+'\n';
+
+  Blockly.Arduino.definitions_['var_file'] = 'File file;';
+
+  Blockly.Arduino.definitions_['var_airbitdatetime'] = 'AirBitDateTimeClass airbitDateTime';
+  Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils';
+
+  var filename = Blockly.Arduino.valueToCode(this, 'FILENAME', Blockly.Arduino.ORDER_ATOMIC) || '"testfile.txt"';
+  
+  var setup = "// Activate CS-Pin control\n";
+  setup += "  pinMode(SD_CS_PIN, OUTPUT);\n\n";
+  setup += "  // Startup SD-card reader\n";
+  setup += "  SD.begin(SD_CS_PIN);\n\n";
+  setup += "  // Define filename\n";
+  setup += "  char filename[] = "+filename+";\n\n";
+
+  setup += "  if (SD.exists(filename)) {\n";
+  setup += "    // Open existing file for writing and append\n";
+  setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
+  setup += "    file.println(\"--------------------\");\n";
+  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "  } else {\n";
+  setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
+  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "  }\n";
+  setup += "  file.flush(); // Force saving data to SD-card\n";
+
+
+  Blockly.Arduino.setups_['setup_sd'] = setup;
+
+  
+  var code = "airUtils.PrintReadingsToSd(airTime, lat, lng,\n"
+  code += "  pm10, pm25, humidity, temperature);";
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
