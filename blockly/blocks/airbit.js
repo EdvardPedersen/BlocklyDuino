@@ -61,10 +61,11 @@ Blockly.Blocks['airbit_get_datetime'] = {
     this.appendDummyInput()
       .appendField("Get DateTime")
       .appendField(new Blockly.FieldImage("https://image.flaticon.com/icons/svg/2097/2097131.svg", 64, 64))
-    this.appendValueInput("GPS")
-      .setCheck('TinyGPSPlus')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("GPS");
+      .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
+      .appendField("PIN_RX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
+      .appendField("PIN_TX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Returns an object containing the current DateTime.');
