@@ -66,8 +66,7 @@ Blockly.Blocks['airbit_get_datetime'] = {
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
       .appendField("PIN_TX")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setOutput(true, 'AirBitDateTimeClass');
     this.setTooltip('Returns an object containing the current DateTime.');
   }
 };

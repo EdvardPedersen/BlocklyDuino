@@ -53,8 +53,8 @@ Blockly.Arduino.airbit_get_datetime = function() {
   
   Blockly.Arduino.setups_["setup_gpscom"] = "gpsCom.begin(9600); // Initialize serial communication to GPS antenna\n";
 
-  var code = 'airbitDateTime = airbitUtils.GetDateTime(gps);\n'
-  return code;
+  var code = 'airbitUtils.GetDateTime(gps)';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino.airbit_gps_update_data = function() {
