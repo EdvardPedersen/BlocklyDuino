@@ -11,7 +11,7 @@ Blockly.Arduino.airbit_blink_led = function() {
   Blockly.Arduino.definitions_['define_led_green'] = '#define LED_GREEN A0\n';
 
   Blockly.Arduino.setups_['setup_led_'+dropdown_pin.toString().toLowerCase()] 
-    = 'pinMode('+dropdown_pin+', OUTPUT);';
+    = 'pinMode('+dropdown_pin+', OUTPUT);\n';
 
   var code = 'digitalWrite('+dropdown_pin+', HIGH);\n'
   code += 'delay('+delay_time+');\n';
@@ -59,8 +59,9 @@ Blockly.Arduino.airbit_get_datetime = function() {
 
 Blockly.Arduino.airbit_gps_update_data = function() {
   Blockly.Arduino.definitions_['define_tinygps++'] = '#include <TinyGPS++.h>';
-  Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>\n';
+  Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>';
   Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
 
@@ -158,7 +159,7 @@ Blockly.Arduino.airbit_gps_location_longitude = function() {
 };
 
 Blockly.Arduino.airbit_dht_temperature = function(){
-  Blockly.Arduino.definitions_['define_dht'] = '#include <DHT.h>\n';
+  Blockly.Arduino.definitions_['define_dht'] = '#include <DHT.h>';
   Blockly.Arduino.definitions_['define_dhtpin'] = '#define DHTPIN 9\n';
 
   Blockly.Arduino.definitions_['var_dht'] = 'DHT dht22(DHTPIN, DHT22)';
@@ -189,13 +190,13 @@ Blockly.Arduino.airbit_sds_pm_readings = function(){
 
   Blockly.Arduino.definitions_['var_sds011'] = 'SDS011 sds;';
   
-  Blockly.Arduino.setups_['setup_sds011'] = 'sds.begin(PM_TX, PM_RX);';
+  Blockly.Arduino.setups_['setup_sds011'] = 'sds.begin(PM_TX, PM_RX);\n';
 
   var pm25 = Blockly.Arduino.valueToCode(this, 'PM25', Blockly.Arduino.ORDER_ATOMIC);
   var pm10 = Blockly.Arduino.valueToCode(this, 'PM10', Blockly.Arduino.ORDER_ATOMIC);
   
   var code = "sds.read(&"+pm25.toString().split('"').join('');
-  code += ", &"+pm10.toString().split('"').join('')+");";
+  code += ", &"+pm10.toString().split('"').join('')+")";
   
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -211,8 +212,8 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
 
   Blockly.Arduino.definitions_['var_file'] = 'File file;';
 
-  Blockly.Arduino.definitions_['var_airbitdatetime'] = 'AirBitDateTimeClass airbitDateTime';
-  Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils';
+  Blockly.Arduino.definitions_['var_airbitdatetime'] = 'AirBitDateTimeClass airbitDateTime;';
+  Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils;';
 
   var filename = Blockly.Arduino.valueToCode(this, 'FILENAME', Blockly.Arduino.ORDER_ATOMIC) || '"testfile.txt"';
   
@@ -237,9 +238,8 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
-  
   var code = "airUtils.PrintReadingsToSd(airbitDateTime, lat, lng,\n"
-  code += "  pm10, pm25, humidity, temperature);";
+  code += "  pm10, pm25, humidity, temperature);\n";
   
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return code;
 };
