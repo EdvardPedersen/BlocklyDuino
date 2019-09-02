@@ -75,6 +75,22 @@ class AirBitUtilsClass {       // The class
       digitalWrite(lightPin, LOW);
     }
 
+    void WaitOnGpsEncoding(TinyGPSPlus gps, SoftwareSerial gpsCom) {
+      bool gpsEncodeComplete = false;
+      do {
+        if (!gpsCom.available()) {
+          // No new data available.
+          // Immediately jump to next iteration
+          continue;
+        }
+        gpsEncodeComplete = gps.encode(gpsCom.read());
+        if (!gpsEncodeComplete) {
+          // Data is incomplete, 
+          // Jump to next iteration and try again
+          continue;
+        }
+      } while (!gpsEncodeComplete); // Loop until gps data was successfully read and encoded from GPS module
+    };
   private:
     void PrintDebugHumidityTemperature(float humidity, float temperature) {
       Serial.print("Humidity: ");

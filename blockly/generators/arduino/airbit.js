@@ -61,7 +61,7 @@ Blockly.Arduino.airbit_gps_update_data = function() {
   Blockly.Arduino.setups_["setup_gpscom"] = "gpsCom.begin(9600); // Initialize serial communication to GPS antenna\n";
 
   var code = "gpsCom.listen();\n";
-  code += "airUtils.wait_on_gps_encoding(gps, gpsCom);\n";
+  code += "airUtils.WaitOnGpsEncoding(gps, gpsCom);\n";
 
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
