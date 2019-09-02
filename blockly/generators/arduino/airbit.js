@@ -2,6 +2,23 @@ goog.provide('Blockly.Arduino.airbit');
 
 goog.require('Blockly.Arduino');
 
+Blockly.Arduino.airbit_declare_variable = function() {
+  // Variable setter.
+  var variable_type = Blockly.Arduino
+    .valueToCode(this, 'TYPE', Blockly.Arduino.ORDER_ATOMIC) || 'int';
+  //TODO: settype to variable
+  var argument0 = Blockly.Arduino.valueToCode(this, 'VALUE',
+      Blockly.Arduino.ORDER_ASSIGNMENT) || 0;
+  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('NAME'),
+      Blockly.Variables.NAME_TYPE);
+
+  Blockly.Arduino.setups_['setup_var' + varName] = variable_type.toString().split('"').join('');
+  Blockly.Arduino.setups_['setup_var' + varName] += " " + varName;
+  Blockly.Arduino.setups_['setup_var' + varName] += ' = ';
+  Blockly.Arduino.setups_['setup_var' + varName] += argument0.toString().split('"').join('') + ';\n';
+  return '';
+};
+
 Blockly.Arduino.airbit_logical_and = function() {
   var a = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
   var b = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);

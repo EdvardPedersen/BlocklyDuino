@@ -5,6 +5,53 @@ goog.require('Blockly.Blocks');
 Blockly.Blocks.airbit.HUE = 250;
 Blockly.Blocks.airbit.HELPURL = 'http://airbit.uit.no/';
 
+Blockly.Blocks['airbit_declare_variable'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.appendDummyInput()
+      .appendField("Declare Variable")
+    this.appendValueInput("TYPE")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Variable Type");
+      this.appendDummyInput()
+      .appendField("Variable Name")
+      .appendField(new Blockly.FieldVariable(
+      Blockly.Msg.VARIABLES_DEFAULT_NAME), 'NAME');
+    this.appendValueInput("VALUE")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Variable Value");
+    
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    
+    this.setTooltip("Declare Variable");
+  },
+  /**
+   * Return all variables referenced by this block.
+   * @return {!Array.<string>} List of variable names.
+   * @this Blockly.Block
+   */
+  getVars: function() {
+    return [this.getFieldValue('NAME')];
+  },
+  /**
+   * Notification that a variable is renaming.
+   * If the name matches one of this block's variables, rename it.
+   * @param {string} oldName Previous name of variable.
+   * @param {string} newName Renamed variable.
+   * @this Blockly.Block
+   */
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('NAME'))) {
+      this.setFieldValue(newName, 'NAME');
+    }
+  },
+  contextMenuType_: 'variables_get',
+  customContextMenu: Blockly.Blocks['variables_get'].customContextMenu
+};
+
 Blockly.Blocks['airbit_logical_and'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
