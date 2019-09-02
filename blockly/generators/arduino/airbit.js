@@ -225,7 +225,7 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
   
-  var code = "airUtils.PrintReadingsToSd(airTime, lat, lng,\n"
+  var code = "airUtils.PrintReadingsToSd(airbitDateTime, lat, lng,\n"
   code += "  pm10, pm25, humidity, temperature);";
   
   return [code, Blockly.Arduino.ORDER_ATOMIC];
