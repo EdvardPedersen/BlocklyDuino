@@ -170,14 +170,14 @@ void wait_on_gps_encoding() {
 }
 
 void print_debug_readings(float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
-  airUtils.PrintDebugReadings(float humidity, float temperature, float pm10, float pm25, double lat, double lng);
+  airUtils.PrintDebugReadings(humidity, temperature, pm10, pm25, lat, lng);
 }
 
 void print_readings_to_sd(AirBitDateTimeClass airTime, double lat, double lng,
    float pm10, float pm25, float humidity, float temperature ) {
   
-  airUtils.PrintReadingsToSd(AirBitDateTimeClass airTime, double lat, double lng,
-   float pm10, float pm25, float humidity, float temperature);
+  airUtils.PrintReadingsToSd(file, airTime, lat, lng,
+   pm10, pm25, humidity, temperature);
   
   file.flush(); // Force saving data to SD-card
 
