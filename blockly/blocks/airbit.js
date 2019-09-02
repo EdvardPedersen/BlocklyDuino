@@ -31,14 +31,14 @@ Blockly.Blocks['airbit_logical_and'] = {
     this.appendDummyInput()
       .appendField("Logical AND (&&)")
     this.appendValueInput("VariableA")
-      .setCheck('Bool')
+      .setCheck('Boolean')
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Variable A");
     this.appendValueInput("VariableB")
-      .setCheck('Bool')
+      .setCheck('Boolean')
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Variable B");
-    this.setOutput(true, 'Bool');
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Returns \'true\' if \'A\' and \'B\' is logically \'true\'');
   }
 };
@@ -99,7 +99,7 @@ Blockly.Blocks['airbit_gps_location_is_valid'] = {
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
       .appendField("PIN_TX")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
-    this.setOutput(true, 'Bool');
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Returns \'true\' if the location from the GPS is valid.');
   }
 };
@@ -115,7 +115,7 @@ Blockly.Blocks['airbit_gps_location_is_updated'] = {
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
       .appendField("PIN_TX")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
-    this.setOutput(true, 'Bool');
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Returns \'true\' if the location from the GPS is updated.');
   }
 };
