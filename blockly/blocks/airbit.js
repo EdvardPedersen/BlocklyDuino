@@ -71,20 +71,20 @@ Blockly.Blocks['airbit_get_datetime'] = {
   }
 };
 
-
-Blockly.Blocks['airbit_get_gps'] = {
+Blockly.Blocks['airbit_gps_update_data'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
     this.setColour(Blockly.Blocks.airbit.HUE);
     this.appendDummyInput()
-      .appendField("GPS module")
+      .appendField("GPS update Data")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
       .appendField("PIN_RX")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
       .appendField("PIN_TX")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
-    this.setOutput(true, 'TinyGPSPlus');
-    this.setTooltip('Non-contact distance measurement module');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Looks for new data inside the GPS module');
   }
 };
 
@@ -93,11 +93,12 @@ Blockly.Blocks['airbit_gps_location_is_valid'] = {
   init: function() {
     this.setColour(Blockly.Blocks.airbit.HUE);
     this.appendDummyInput()
-      .appendField("Is GPS Valid")
+      .appendField("GPS is Valid")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
-    this.appendValueInput("GPS")
-      .appendField('GPS')
-      .setAlign(Blockly.ALIGN_RIGHT);
+      .appendField("PIN_RX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
+      .appendField("PIN_TX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
     this.setOutput(true, 'Bool');
     this.setTooltip('Returns \'true\' if the location from the GPS is valid.');
   }
@@ -108,12 +109,12 @@ Blockly.Blocks['airbit_gps_location_is_updated'] = {
   init: function() {
     this.setColour(Blockly.Blocks.airbit.HUE);
     this.appendDummyInput()
-      .appendField("Is GPS Updated")
+      .appendField("GPS is Updated")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
-    this.appendValueInput("GPS")
-      .setCheck('TinyGPSPlus')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("GPS");
+      .appendField("PIN_RX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
+      .appendField("PIN_TX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
     this.setOutput(true, 'Bool');
     this.setTooltip('Returns \'true\' if the location from the GPS is updated.');
   }
@@ -126,10 +127,10 @@ Blockly.Blocks['airbit_gps_location_latitude'] = {
     this.appendDummyInput()
       .appendField("GPS Latitude")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
-    this.appendValueInput("GPS")
-      .setCheck('TinyGPSPlus')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("GPS");
+      .appendField("PIN_RX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
+      .appendField("PIN_TX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
     this.setOutput(true, 'Double');
     this.setTooltip('Returns latitude of the GPS location. Return value is a double');
   }
@@ -142,10 +143,10 @@ Blockly.Blocks['airbit_gps_location_longitude'] = {
     this.appendDummyInput()
       .appendField("GPS Longitude")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
-    this.appendValueInput("GPS")
-      .setCheck('TinyGPSPlus')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("GPS");
+      .appendField("PIN_RX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_RX")
+      .appendField("PIN_TX")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
     this.setOutput(true, 'Double');
     this.setTooltip('Returns longitude of the GPS location. Return value is a double');
   }
