@@ -2,6 +2,20 @@ goog.provide('Blockly.Arduino.airbit');
 
 goog.require('Blockly.Arduino');
 
+Blockly.Arduino.airbit_logical_and = function() {
+  var a = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
+  var b = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = a +' && '+ b;+'\n';
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.airbit_continue = function() {
+  var code = 'continue\n;'
+  
+  return code;
+};
 
 Blockly.Arduino.airbit_blink_led = function() {
   var dropdown_pin = this.getFieldValue('PIN');
@@ -16,21 +30,6 @@ Blockly.Arduino.airbit_blink_led = function() {
   var code = 'digitalWrite('+dropdown_pin+', HIGH);\n'
   code += 'delay('+delay_time+');\n';
   code += 'digitalWrite('+dropdown_pin+', LOW);\n'
-  return code;
-};
-
-Blockly.Arduino.airbit_logical_and = function() {
-  var a = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
-  var b = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
-
-  var code = a +' && '+ b;+'\n';
-  
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.airbit_continue = function() {
-  var code = 'continue\n;'
-  
   return code;
 };
 

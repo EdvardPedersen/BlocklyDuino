@@ -5,25 +5,6 @@ goog.require('Blockly.Blocks');
 Blockly.Blocks.airbit.HUE = 250;
 Blockly.Blocks.airbit.HELPURL = 'http://airbit.uit.no/';
 
-Blockly.Blocks['airbit_blink_led'] = {
-  helpUrl: Blockly.Blocks.airbit.HELPURL,
-  init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
-    this.appendDummyInput()
-      .appendField("LED")
-      .appendField(new Blockly.FieldImage("https://www.clipartwiki.com/clipimg/detail/70-701978_lights-clipart-led-diodes-led.png", 64, 64))
-      .appendField("PIN#")
-      .appendField(new Blockly.FieldDropdown([["GREEN", "LED_GREEN"], ["RED", "LED_RED"]]), "PIN")
-    this.appendValueInput("DELAY_TIME", 'Number')
-      .setCheck('Number')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Delay");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip('Green LED. "HIGH" turns the light on. "LOW" turns it off');
-  }
-};
-
 Blockly.Blocks['airbit_logical_and'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
@@ -51,6 +32,25 @@ Blockly.Blocks['airbit_continue'] = {
       .appendField("Restart Loop");
     this.setPreviousStatement(true, null);
     this.setTooltip('Goes to the start of the parent loop. Work already done will not be reset.');
+  }
+};
+
+Blockly.Blocks['airbit_blink_led'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.appendDummyInput()
+      .appendField("LED")
+      .appendField(new Blockly.FieldImage("https://www.clipartwiki.com/clipimg/detail/70-701978_lights-clipart-led-diodes-led.png", 64, 64))
+      .appendField("PIN#")
+      .appendField(new Blockly.FieldDropdown([["GREEN", "LED_GREEN"], ["RED", "LED_RED"]]), "PIN")
+    this.appendValueInput("DELAY_TIME", 'Number')
+      .setCheck('Number')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Delay");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Green LED. "HIGH" turns the light on. "LOW" turns it off');
   }
 };
 
