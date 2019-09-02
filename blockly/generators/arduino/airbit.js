@@ -238,8 +238,22 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
-  var code = "airUtils.PrintReadingsToSd(airbitDateTime, lat, lng,\n"
-  code += "  pm10, pm25, humidity, temperature);\n";
+  var airbitDateTime = Blockly.Arduino.valueToCode(this, 'AIRBITDATETIME', Blockly.Arduino.ORDER_ATOMIC);
+  var lat = Blockly.Arduino.valueToCode(this, 'LATITUDE', Blockly.Arduino.ORDER_ATOMIC);
+  var lng = Blockly.Arduino.valueToCode(this, 'LONGITUDE', Blockly.Arduino.ORDER_ATOMIC);
+  var pm10 = Blockly.Arduino.valueToCode(this, 'PM10', Blockly.Arduino.ORDER_ATOMIC);
+  var pm25 = Blockly.Arduino.valueToCode(this, 'PM25', Blockly.Arduino.ORDER_ATOMIC);
+  var humidity = Blockly.Arduino.valueToCode(this, 'HUMIDITY', Blockly.Arduino.ORDER_ATOMIC);
+  var temperature = Blockly.Arduino.valueToCode(this, 'TEMPERATURE', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = "airUtils.PrintReadingsToSd(file, ";
+  code += airbitDateTime.toString().split('"').join('')+", ";
+  code += lat.toString().split('"').join('')+", ";
+  code += lng.toString().split('"').join('')+",\n  ";
+  code += pm10.toString().split('"').join('')+", ";
+  code += pm25.toString().split('"').join('')+", ";
+  code += humidity.toString().split('"').join('')+", ";
+  code += temperature.toString().split('"').join('')+");\n";
   
   return code;
 };
