@@ -240,7 +240,6 @@ Blockly.Arduino.airbit_sds_pm_readings = function(){
 
 Blockly.Arduino.airbit_sd_store_readings = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
-  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
   Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
 
   var pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
@@ -249,7 +248,6 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
 
   Blockly.Arduino.definitions_['var_file'] = 'File file;';
 
-  Blockly.Arduino.definitions_['var_airbitdatetime'] = 'AirBitDateTimeClass airbitDateTime;';
   Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils;';
 
   var filename = Blockly.Arduino.valueToCode(this, 'FILENAME', Blockly.Arduino.ORDER_ATOMIC) || '"testfile.txt"';
@@ -283,7 +281,7 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
   var humidity = Blockly.Arduino.valueToCode(this, 'HUMIDITY', Blockly.Arduino.ORDER_ATOMIC);
   var temperature = Blockly.Arduino.valueToCode(this, 'TEMPERATURE', Blockly.Arduino.ORDER_ATOMIC);
 
-  var code = "airUtils.PrintReadingsToSd(file, ";
+  var code = "airbitUtils.PrintReadingsToSd(file, ";
   code += airbitDateTime.toString().split('"').join('')+", ";
   code += lat.toString().split('"').join('')+", ";
   code += lng.toString().split('"').join('')+",\n  ";
