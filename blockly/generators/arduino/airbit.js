@@ -11,6 +11,10 @@ Blockly.Arduino.airbit_declare_variable = function() {
   var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('NAME'),
       Blockly.Variables.NAME_TYPE);
   
+  if (variable_type.includes("AirBitDateTimeClass")) {
+    Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
+  }
+
   var isArray = false;
   if (variable_type.includes("[]")) {
     isArray = true;
@@ -82,7 +86,6 @@ Blockly.Arduino.airbit_get_datetime = function() {
 
   Blockly.Arduino.definitions_['var_gpscom'] = 'SoftwareSerial gpsCom(GPS_RX, GPS_TX);';
   Blockly.Arduino.definitions_['var_gps'] = 'TinyGPSPlus gps;\n';
-  Blockly.Arduino.definitions_['var_airbitdatetime'] = 'AirBitDateTimeClass airbitDateTime';
   Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils\n';
   
   Blockly.Arduino.setups_["setup_gpscom"] = "gpsCom.begin(9600); // Initialize serial communication to GPS antenna\n";

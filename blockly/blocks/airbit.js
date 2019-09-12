@@ -14,7 +14,8 @@ Blockly.Blocks['airbit_declare_variable'] = {
         ['double', 'double'],
         ['bool', 'bool'],
         ['char', 'char'],
-        ['char[]', 'char[]']
+        ['char[]', 'char[]'],
+        ['AirBitDateTimeClass', 'AirBitDateTimeClass']
       ];
     this.setColour(Blockly.Blocks.airbit.HUE);
     this.appendDummyInput()
@@ -151,7 +152,7 @@ Blockly.Blocks['airbit_get_datetime'] = {
       .appendField("PIN_TX")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN_TX");
     this.setOutput(true, 'AirBitDateTimeClass');
-    this.setTooltip('Returns an object containing the current DateTime.');
+    this.setTooltip("Returns an 'AirBitDateTimeClass' object containing the current DateTime.");
   }
 };
 
