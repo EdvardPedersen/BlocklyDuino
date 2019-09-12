@@ -8,14 +8,22 @@ Blockly.Blocks.airbit.HELPURL = 'http://airbit.uit.no/';
 Blockly.Blocks['airbit_declare_variable'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
+    var TYPES =
+      [
+        ['int', 'int'],
+        ['double', 'double'],
+        ['bool', 'bool'],
+        ['char', 'char'],
+        ['char[]', 'char[]']
+      ];
     this.setColour(Blockly.Blocks.airbit.HUE);
     this.appendDummyInput()
       .appendField("Declare Variable")
-    this.appendValueInput("TYPE")
-      .setCheck('String')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Variable Type");
-      this.appendDummyInput()
+    this.appendDummyInput()
+      .appendField("Variable Type")
+      .appendField(new Blockly.FieldDropdown(TYPES), 'TYPE')
+      .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
       .appendField("Variable Name")
       .appendField(new Blockly.FieldVariable(
       Blockly.Msg.VARIABLES_DEFAULT_NAME), 'NAME');
