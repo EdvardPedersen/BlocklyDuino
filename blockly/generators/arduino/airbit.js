@@ -19,6 +19,14 @@ Blockly.Arduino.airbit_declare_variable = function() {
   return '';
 };
 
+Blockly.Arduino.airbit_true_false = function() {
+  var isTrue = this.getFieldValue('BOOL');
+
+  var code = isTrue.toString();
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino.airbit_logical_and = function() {
   var a = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
   var b = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);

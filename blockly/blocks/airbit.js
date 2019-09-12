@@ -52,6 +52,35 @@ Blockly.Blocks['airbit_declare_variable'] = {
   customContextMenu: Blockly.Blocks['variables_get'].customContextMenu
 };
 
+Blockly.Blocks['airbit_true_false'] = {
+  /**
+   * Block for basic arithmetic operator.
+   * @this Blockly.Block
+   */
+  init: function() {
+    var BOOLS =
+      [['true', 'true'],
+        ['false', 'false']];
+    this.setHelpUrl(Blockly.Blocks.airbit.HELPURL);
+    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setOutput(true, 'Boolean');
+    this.appendDummyInput()
+      .appendField("Bool")
+      .appendField(new Blockly.FieldDropdown(BOOLS), 'BOOL');
+    this.setInputsInline(true);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    this.setTooltip(function() {
+      var mode = thisBlock.getFieldValue('BOOL');
+      var TOOLTIPS = {
+        'true': "Returns the value 'true'",
+        'false': "Returns the value 'false'"
+      };
+      return TOOLTIPS[mode];
+    });
+  }
+};
+
 Blockly.Blocks['airbit_logical_and'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
