@@ -14,6 +14,7 @@ Blockly.Blocks['airbit_declare_variable'] = {
         ['double', 'double'],
         ['bool', 'bool'],
         ['char', 'char'],
+        ['float', 'float'],
         ['char[]', 'char[]'],
         ['AirBitDateTimeClass', 'AirBitDateTimeClass']
       ];
