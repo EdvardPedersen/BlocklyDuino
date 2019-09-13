@@ -1,8 +1,13 @@
 goog.provide('Blockly.Blocks.airbit');
 
 goog.require('Blockly.Blocks');
+goog.require('Blockly.Blocks.variables')
 
 Blockly.Blocks.airbit.HUE = 250;
+Blockly.Blocks.airbit.GpsHUE = 290;
+Blockly.Blocks.airbit.DhtHUE = 300;
+Blockly.Blocks.airbit.SdsHUE = 410;
+Blockly.Blocks.airbit.SdHUE = 40;
 Blockly.Blocks.airbit.HELPURL = 'http://airbit.uit.no/';
 
 Blockly.Blocks['airbit_declare_variable'] = {
@@ -18,7 +23,7 @@ Blockly.Blocks['airbit_declare_variable'] = {
         ['char[]', 'char[]'],
         ['AirBitDateTimeClass', 'AirBitDateTimeClass']
       ];
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.variables.HUE);
     this.appendDummyInput()
       .appendField("Declare Variable")
     this.appendDummyInput()
@@ -72,7 +77,7 @@ Blockly.Blocks['airbit_true_false'] = {
       [['true', 'true'],
         ['false', 'false']];
     this.setHelpUrl(Blockly.Blocks.airbit.HELPURL);
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.variables.HUE);
     this.setOutput(true, 'Boolean');
     this.appendDummyInput()
       .appendField("Bool")
@@ -94,7 +99,7 @@ Blockly.Blocks['airbit_true_false'] = {
 Blockly.Blocks['airbit_logical_and'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.variables.HUE);
     this.appendDummyInput()
       .appendField("Logical AND (&&)")
     this.appendValueInput("VariableA")
@@ -113,7 +118,7 @@ Blockly.Blocks['airbit_logical_and'] = {
 Blockly.Blocks['airbit_continue'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.variables.HUE);
     this.appendDummyInput()
       .appendField("Restart Loop");
     this.setPreviousStatement(true, null);
@@ -124,7 +129,7 @@ Blockly.Blocks['airbit_continue'] = {
 Blockly.Blocks['airbit_blink_led'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.variables.HUE);
     this.appendDummyInput()
       .appendField("LED")
       .appendField(new Blockly.FieldImage("https://www.clipartwiki.com/clipimg/detail/70-701978_lights-clipart-led-diodes-led.png", 64, 64))
@@ -143,7 +148,7 @@ Blockly.Blocks['airbit_blink_led'] = {
 Blockly.Blocks['airbit_get_datetime'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.GpsHUE);
     this.appendDummyInput()
       .appendField("Get DateTime")
       .appendField(new Blockly.FieldImage("https://image.flaticon.com/icons/svg/2097/2097131.svg", 64, 64))
@@ -160,7 +165,7 @@ Blockly.Blocks['airbit_get_datetime'] = {
 Blockly.Blocks['airbit_gps_update_data'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.GpsHUE);
     this.appendDummyInput()
       .appendField("GPS update Data")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
@@ -177,7 +182,7 @@ Blockly.Blocks['airbit_gps_update_data'] = {
 Blockly.Blocks['airbit_gps_location_is_valid'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.GpsHUE);
     this.appendDummyInput()
       .appendField("GPS is Valid")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
@@ -193,7 +198,7 @@ Blockly.Blocks['airbit_gps_location_is_valid'] = {
 Blockly.Blocks['airbit_gps_location_is_updated'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.GpsHUE);
     this.appendDummyInput()
       .appendField("GPS is Updated")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
@@ -209,7 +214,7 @@ Blockly.Blocks['airbit_gps_location_is_updated'] = {
 Blockly.Blocks['airbit_gps_location_latitude'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.GpsHUE);
     this.appendDummyInput()
       .appendField("GPS Latitude")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
@@ -225,7 +230,7 @@ Blockly.Blocks['airbit_gps_location_latitude'] = {
 Blockly.Blocks['airbit_gps_location_longitude'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.GpsHUE);
     this.appendDummyInput()
       .appendField("GPS Longitude")
       .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
@@ -241,7 +246,7 @@ Blockly.Blocks['airbit_gps_location_longitude'] = {
 Blockly.Blocks['airbit_dht_temperature'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.DhtHUE);
     this.appendDummyInput()
       .appendField("Get DHT22 Temperature")
       .appendField(new Blockly.FieldImage("https://img.dxcdn.com/productimages/sku_435776_1.jpg", 64, 64))
@@ -253,7 +258,7 @@ Blockly.Blocks['airbit_dht_temperature'] = {
 Blockly.Blocks['airbit_dht_humidity'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.DhtHUE);
     this.appendDummyInput()
       .appendField("Get DHT22 Humidity")
       .appendField(new Blockly.FieldImage("https://img.dxcdn.com/productimages/sku_435776_1.jpg", 64, 64))
@@ -265,7 +270,7 @@ Blockly.Blocks['airbit_dht_humidity'] = {
 Blockly.Blocks['airbit_sds_pm_readings'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.SdsHUE);
     this.appendDummyInput()
       .appendField("SDS Dust Sensor")
       .appendField(new Blockly.FieldImage("https://www.digitalimpuls.no/Media/Cache/Images/1/0/WEB_Image%20Partikkelm%C3%A5ler%20%20Nova%20PM%20sensor%20SDS011%205V%201445872001888984.Png", 64, 64))
@@ -287,7 +292,7 @@ Blockly.Blocks['airbit_sds_pm_readings'] = {
 Blockly.Blocks['airbit_sd_store_readings'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
-    this.setColour(Blockly.Blocks.airbit.HUE);
+    this.setColour(Blockly.Blocks.airbit.SdHUE);
     this.appendDummyInput()
       .appendField("SD Storage")
       .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))

@@ -338,7 +338,7 @@ function init() {
   <textarea id="content_arduino" class="content" readonly wrap="off"></textarea>
   <textarea id="content_xml" class="content" wrap="off"></textarea>
 
-  <xml id="toolbox" style="display: none">
+  <xml id="toolbox" style="display: none;">
     <category name="Logic">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
@@ -465,23 +465,32 @@ function init() {
     <category name="Grove Motor">
       <block type="grove_motor_shield"></block>
     </category>
-    <category name="Air:Bit">
+    <sep></sep>
+    <category name="Air:Bit; General">
       <block type="airbit_declare_variable"></block>
       <block type="airbit_true_false"></block>
       <block type="airbit_logical_and"></block>
       <block type="airbit_continue"></block>
       <block type="airbit_blink_led"></block>
+    </category>
+    <category name="Air:Bit; GPS">
       <block type="airbit_get_datetime"></block>
       <block type="airbit_gps_location_is_valid"></block>
       <block type="airbit_gps_location_is_updated"></block>
       <block type="airbit_gps_location_latitude"></block>
       <block type="airbit_gps_location_longitude"></block>
       <block type="airbit_gps_update_data"></block>
-      <block type="airbit_dht_temperature"></block>
-      <block type="airbit_dht_humidity"></block>
-      <block type="airbit_sds_pm_readings"></block>
-      <block type="airbit_sd_store_readings"></block>
     </category>
-  </xml>
+    <category name="Air:Bit; DHT">
+        <block type="airbit_dht_temperature"></block>
+        <block type="airbit_dht_humidity"></block>
+    </category>
+    <category name="Air:Bit; SDS">
+        <block type="airbit_sds_pm_readings"></block>
+    </category>
+    <category name="Air:Bit; SD">
+        <block type="airbit_sd_store_readings"></block>
+    </category>
+  </div>
 </body>
 </html>
