@@ -37,7 +37,7 @@ Blockly.Arduino.airbit_true_false = function() {
 
 Blockly.Arduino.airbit_logical_and = function() {
   var a = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
-  var b = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
+  var b = Blockly.Arduino.valueToCode(this, 'VariableB', Blockly.Arduino.ORDER_ATOMIC);
 
   var code = '( ' + a +' && '+ b +' )';
   
