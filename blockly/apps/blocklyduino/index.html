@@ -13,13 +13,11 @@
   <script src="../../blocks/colour.js"></script>
   <script src="../../blocks/variables.js"></script>
   <script src="../../blocks/procedures.js"></script>
-  <script src="../../blocks/grove.js"></script>
   <script src="../../blocks/airbit.js"></script>
   <script type="text/javascript" src="../../arduino_compressed.js"></script>
   <script src="../../generators/arduino/airbit.js"></script>
   <script src="../../generators/arduino/base.js"></script>
   <script src="../../generators/arduino/control.js"></script>
-  <script src="../../generators/arduino/grove.js"></script>
   <script src="../../generators/arduino/logic.js"></script>
   <script src="../../generators/arduino/math.js"></script>
   <script src="../../generators/arduino/procedures.js"></script>
@@ -430,54 +428,19 @@ function init() {
       </block>
       <block type="servo_read_degrees"></block>
     </category>
-    <category name="Grove Analog">
-      <block type="grove_rotary_angle"></block>
-      <block type="grove_temporature_sensor"></block>
-      <block type="grove_sound_sensor"></block>
-      <block type="grove_thumb_joystick"></block>
-    </category>
-    <category name="Grove">
-      <block type="grove_led"></block>
-      <block type="grove_button"></block>
-      <block type="grove_relay"></block>
-      <block type="grove_tilt_switch"></block>
-      <block type="grove_piezo_buzzer"></block>
-      <block type="grove_pir_motion_sensor"></block>
-      <block type="grove_line_finder"></block>
-      <block type="grove_rgb_led"></block>
-      <block type="grove_ultrasonic_ranger"></block>
-    </category>
-    <category name="Grove LCD">
-      <block type="grove_serial_lcd_print">
-        <value name="TEXT">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-        </value>
-        <value name="TEXT2">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-        </value>
-        <value name="DELAY_TIME">
-          <block type="math_number">
-            <field name="NUM">1000</field>
-          </block>
-        </value>
-      </block>
-      <block type="grove_serial_lcd_power"></block>
-      <block type="grove_serial_lcd_effect"></block>
-    </category>
-    <category name="Grove Motor">
-      <block type="grove_motor_shield"></block>
-    </category>
     <sep></sep>
     <category name="Air:Bit; General">
       <block type="airbit_declare_variable"></block>
       <block type="airbit_true_false"></block>
       <block type="airbit_logical_and"></block>
       <block type="airbit_continue"></block>
-      <block type="airbit_blink_led"></block>
+      <block type="airbit_blink_led">
+        <value name="DELAY_TIME">
+          <block type="math_number">
+            <field name="NUM">500</field>
+          </block>
+        </value>
+      </block>
     </category>
     <category name="Air:Bit; GPS">
       <block type="airbit_get_datetime"></block>
@@ -488,14 +451,66 @@ function init() {
       <block type="airbit_gps_update_data"></block>
     </category>
     <category name="Air:Bit; DHT">
-        <block type="airbit_dht_temperature"></block>
-        <block type="airbit_dht_humidity"></block>
+      <block type="airbit_dht_temperature"></block>
+      <block type="airbit_dht_humidity"></block>
     </category>
     <category name="Air:Bit; SDS">
-        <block type="airbit_sds_pm_readings"></block>
+      <block type="airbit_sds_pm_readings">
+        <value name="PM10">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="PM25">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
     </category>
     <category name="Air:Bit; SD">
-        <block type="airbit_sd_store_readings"></block>
+      <block type="airbit_sd_store_readings">
+        <value name="FILENAME">
+          <block type="text">
+            <field name="TEXT">filename.txt</field>
+          </block>
+        </value>
+        <value name="AIRBITDATETIME">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="LATITUDE">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="LONGITUDE">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="PM10">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="PM25">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="HUMIDITY">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="TEMPERATURE">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
     </category>
   </div>
 </body>
