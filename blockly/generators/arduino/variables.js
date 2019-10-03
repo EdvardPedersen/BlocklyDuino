@@ -23,7 +23,7 @@
  */
 'use strict';
 
-goog.provide('Blockly.Arduino.variables');
+//goog.provide('Blockly.Arduino.variables');
 
 goog.require('Blockly.Arduino');
 
@@ -35,7 +35,7 @@ Blockly.Arduino.variables_get = function() {
       Blockly.Variables.NAME_TYPE);
   if (!(code in Blockly.Arduino.variableTypeDB_))
   {
-  Blockly.Arduino.variableTypeDB_[code] = "int";
+    Blockly.Arduino.variableTypeDB_[code] = "int";
   }
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -60,7 +60,7 @@ Blockly.Arduino.variables_set = function() {
       Blockly.Variables.NAME_TYPE);
   if (!(varName in Blockly.Arduino.variableTypeDB_))
   {
-  Blockly.Arduino.variableTypeDB_[varName] = "int";
+    Blockly.Arduino.variableTypeDB_[varName] = "int";
   }
   return varName + ' = ' + argument0 + ';\n';
 };

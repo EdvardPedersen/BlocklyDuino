@@ -1,4 +1,4 @@
-goog.provide('Blockly.Arduino.airbit');
+//goog.provide('Blockly.Arduino.airbit');
 
 goog.require('Blockly.Arduino');
 goog.require('Blockly.Arduino.variables');
