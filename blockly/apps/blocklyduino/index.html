@@ -36,7 +36,7 @@
  * List of tab names.
  * @private
  */
-var TABS_ = ['blocks', 'arduino', 'xml'];
+var TABS_ = ['blocks', 'arduino'/*, 'xml'*/];
 
 var selected = 'blocks';
 
@@ -46,6 +46,7 @@ var selected = 'blocks';
  */
 function tabClick(clickedName) {
   // If the XML tab was open, save and render the content.
+  /*
   if (document.getElementById('tab_xml').className == 'tabon') {
     var xmlTextarea = document.getElementById('content_xml');
     var xmlText = xmlTextarea.value;
@@ -65,6 +66,7 @@ function tabClick(clickedName) {
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
     }
   }
+  */
 
   if (document.getElementById('tab_blocks').className == 'tabon') {
     Blockly.mainWorkspace.setVisible(false);
@@ -99,12 +101,12 @@ function renderContent() {
     // If the workspace was changed by the XML tab, Firefox will have performed
     // an incomplete rendering due to Blockly being invisible.  Rerender.
     Blockly.mainWorkspace.render();
-  } else if (content.id == 'content_xml') {
+  /*} else if (content.id == 'content_xml') {
     var xmlTextarea = document.getElementById('content_xml');
     var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
     var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
     xmlTextarea.value = xmlText;
-    xmlTextarea.focus();
+    xmlTextarea.focus();*/
   /*} else if (content.id == 'content_javascript') {
     content.innerHTML = Blockly.JavaScript.workspaceToCode();
   } else if (content.id == 'content_dart') {
@@ -266,6 +268,7 @@ function init() {
     .blocklySvg {
       border-top: none !important;
     }
+    /*
     #content_xml {
       resize: none;
       outline: none;
@@ -273,6 +276,7 @@ function init() {
       font-family: monospace;
       overflow: scroll;
     }
+    */
     button {
       padding: 1px 1em;
       font-size: 90%;
@@ -315,14 +319,16 @@ function init() {
             <td class="tabmin">&nbsp;</td-->
             <td id="tab_arduino" class="taboff" onclick="tabClick('arduino')">Arduino</td>
             <td class="tabmin">&nbsp;</td>
-            <td id="tab_xml" class="taboff" onclick="tabClick('xml')">XML</td>
+            <!--<td id="tab_xml" class="taboff" onclick="tabClick('xml')">XML</td>-->
             <td class="tabmax">
               <button type="button" onclick="uploadClick()">Upload</button>
               <button type="button" onclick="resetClick()">Reset</button>
               <button onclick="discard()">Discard</button>
               <button onclick="saveCode()">Save Arduino Code</button>
+              <!--
               <button onclick="save()">Save XML</button>
               <button id="fakeload">Load XML</button>
+              -->
               <input type="file" id="load" style="display: none;"/>
               <!--button class="launch" onclick="runJS()">Run Program</button-->
             </td>
@@ -336,7 +342,7 @@ function init() {
   </table>
   <div id="content_blocks" class="content"></div>
   <textarea id="content_arduino" class="content" readonly wrap="off"></textarea>
-  <textarea id="content_xml" class="content" wrap="off"></textarea>
+  <!--<textarea id="content_xml" class="content" wrap="off"></textarea>-->
 
   <xml id="toolbox" style="display: none;">
     <category name="Logic">
