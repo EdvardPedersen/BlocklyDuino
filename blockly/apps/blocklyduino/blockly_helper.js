@@ -333,7 +333,7 @@ function download_project_code() {
   var fileName = window.prompt('What would you like to name your file?', 'BlocklyDuino')
 
   var zip = new JSZip();
-  console.log("test");
+  
   //doesn't save if the user quits the save prompt
   if(fileName){
     request.onreadystatechange = function() {
@@ -361,16 +361,11 @@ function download_project_code() {
 
     request.onload = function () {
       var response = request.responseText
-      console.log(response)
-      var content = new Blob([response], {type: 'application/zip'});
-      console.log(content)
-      // saveAs(content, "archive.zip");
+      
       zipper.loadAsync(response)
       .then(function (zip) {
-          console.log(zip);
           var blob = new Blob([Blockly.Arduino.workspaceToCode()], {type: 'text/plain;charset=utf-8'});
           zip.file(fileName + '.ino', blob)
-          console.log(zip);
 
           zip.generateAsync({type:"blob"})
           .then(function(content) {
