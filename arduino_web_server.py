@@ -90,7 +90,10 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         """Send page text"""
-        if self.path != "/":
+        if self.path == "/download_project":
+            self.path = "../air-bit/refactored_code/refactor2/lib.zip"
+            return SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+        elif self.path != "/":
             return SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
         else:
             self.send_response(302)
