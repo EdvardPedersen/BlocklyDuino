@@ -322,3 +322,66 @@ function upload_to_arduino(data) {
     data_to_send = JSON.stringify({hex: data.response, arduino: 'uno'});
     request.send(data_to_send);
 }
+
+function download_project_code() {
+  var url = "http://127.0.0.1:8080/download_project";
+  var method = "GET"
+  var async = true;
+  var zipper = new JSZip()
+  var request = new XMLHttpRequest();
+
+  var fileName = window.prompt('What would you like to name your file?', 'BlocklyDuino')
+
+  var zip = new JSZip();
+  console.log("test");
+  //doesn't save if the user quits the save prompt
+  if(fileName){
+    request.onreadystatechange = function() {
+        if (request.readyState != 4) {
+            return;
+        }
+
+        var status = parseInt(request.status); // HTTP response status, e.g., 200 for "200 OK"
+        var errorInfo = null;
+        switch (status) {
+        case 200:
+            break;
+        case 0:
+            errorInfo = "code 0\n\nCould not connect to server at " + url + ".  Is the local web server running?";
+            break;
+        default:
+            errorInfo = "code " + status + "\n\nUnknown error.";
+            break;
+        };
+    };
+
+    request.open(method, url, async);
+    request.overrideMimeType("text/plain; charset=x-user-defined");
+    request.send();
+
+    request.onload = function () {
+      var response = request.responseText
+      console.log(response)
+      var content = new Blob([response], {type: 'application/zip'});
+      console.log(content)
+      // saveAs(content, "archive.zip");
+      zipper.loadAsync(response)
+      .then(function (zip) {
+          console.log(zip);
+          var blob = new Blob([Blockly.Arduino.workspaceToCode()], {type: 'text/plain;charset=utf-8'});
+          zip.file(fileName + '.ino', blob)
+          console.log(zip);
+
+          zip.generateAsync({type:"blob"})
+          .then(function(content) {
+            saveAs(content, "archive.zip");
+          })
+      });
+    }
+    
+    request.onerror = function() {
+      // handle non-HTTP error (e.g. network down)
+    };    
+  }
+}
+  

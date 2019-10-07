@@ -28,6 +28,7 @@
   <script type="text/javascript" src="spin.js"></script>
   <script type="text/javascript" src="FileSaver.min.js"></script>
   <script type="text/javascript" src="blockly_helper.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
   <script>
 
 /**
@@ -323,6 +324,7 @@ function init() {
               <button type="button" onclick="resetClick()">Reset</button>
               <button onclick="discard()">Discard</button>
               <button onclick="saveCode()">Save Arduino Code</button>
+              <button onclick="download_project_code()">Download Project</button>
               <!--
               <button onclick="save()">Save XML</button>
               <button id="fakeload">Load XML</button>
