@@ -317,7 +317,7 @@ function upload_to_arduino(data) {
     };
 
     request.open(method, url, async);
-    
+    request.setRequestHeader("Content-Type", "application/octet-stream");
     console.log(data);
     data_to_send = JSON.stringify({hex: data.response, arduino: 'uno'});
     request.send(data_to_send);
