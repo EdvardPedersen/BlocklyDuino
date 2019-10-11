@@ -160,7 +160,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    print("Blocklyduino can now be accessed at http://0.0.0.0:80/")
-    server = http.server.HTTPServer(("0.0.0.0", 80), Handler)
+    print("Blocklyduino can now be accessed at http://0.0.0.0:8080/")
+    server = http.server.HTTPServer(("0.0.0.0", 8080), Handler)
     server.pages = {}
     server.serve_forever()
