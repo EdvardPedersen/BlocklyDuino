@@ -203,7 +203,7 @@ function uploadCode(code, callback) {
     var target = document.getElementById('content_arduino');
     var spinner = new Spinner().spin(target);
 
-    var url = "http://127.0.0.1:8080/";
+    var url = "http://0.0.0.0:8080/";
     var method = "POST";
 
     // You REALLY want async = true.
@@ -324,7 +324,7 @@ function upload_to_arduino(data) {
 }
 
 function download_project_code() {
-  var url = "http://127.0.0.1:8080/download_project";
+  var url = "http://0.0.0.0:8080/download_project";
   var method = "GET"
   var async = true;
   var zipper = new JSZip()

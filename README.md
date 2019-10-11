@@ -45,7 +45,7 @@ python arduino_web_server.py
 
 You can optionally specify the port with `--port=COM3` (or `--port=/dev/tty.foo` on Linux and Mac); if you don't, it will try and guess which port to use.
 
-When the webserver is running, you can access BlocklyDuino itself on [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
+When the webserver is running, you can access BlocklyDuino itself on [http://0.0.0.1:8080/](http://0.0.0.1:8080/).
 
 ### Usage
 
