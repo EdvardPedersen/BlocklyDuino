@@ -349,8 +349,10 @@ function init() {
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
       <block type="logic_operation"></block>
+      <block type="logic_logical_and"></block>
       <block type="logic_negate"></block>
       <block type="logic_null"></block>
+      <block type="logic_true_false"></block>
     </category>
     <category name="Control">
       <block type="base_delay">
@@ -373,6 +375,7 @@ function init() {
         </value>
       </block>
       <block type="controls_whileUntil"></block>
+      <block type="controls_continue"></block>
     </category>
     <category name="Math">
       <block type="math_number"></block>
@@ -433,10 +436,7 @@ function init() {
       <block type="servo_read_degrees"></block>
     </category>
     <sep></sep>
-    <category name="Air:Bit; General">
-      <block type="airbit_true_false"></block>
-      <block type="airbit_logical_and"></block>
-      <block type="airbit_continue"></block>
+    <category name="Air:Bit; LED">
       <block type="airbit_blink_led">
         <value name="DELAY_TIME">
           <block type="math_number">

@@ -98,3 +98,20 @@ Blockly.Arduino.logic_null = function() {
   var code = 'NULL';
   return [code ,Blockly.Arduino.ORDER_ATOMIC];
 };
+
+Blockly.Arduino.logic_true_false = function() {
+  var isTrue = this.getFieldValue('BOOL');
+
+  var code = isTrue.toString();
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.logic_logical_and = function() {
+  var a = Blockly.Arduino.valueToCode(this, 'VariableA', Blockly.Arduino.ORDER_ATOMIC);
+  var b = Blockly.Arduino.valueToCode(this, 'VariableB', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = '( ' + a + ' && ' + b + ' )';
+  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};

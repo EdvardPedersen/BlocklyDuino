@@ -10,65 +10,6 @@ Blockly.Blocks.airbit.SdsHUE = 410;
 Blockly.Blocks.airbit.SdHUE = 40;
 Blockly.Blocks.airbit.HELPURL = 'http://airbit.uit.no/';
 
-Blockly.Blocks['airbit_true_false'] = {
-  /**
-   * Block for basic arithmetic operator.
-   * @this Blockly.Block
-   */
-  init: function() {
-    var BOOLS =
-      [['true', 'true'],
-        ['false', 'false']];
-    this.setHelpUrl(Blockly.Blocks.airbit.HELPURL);
-    this.setColour(Blockly.Blocks.variables.HUE);
-    this.setOutput(true, 'Boolean');
-    this.appendDummyInput()
-      .appendField("Bool")
-      .appendField(new Blockly.FieldDropdown(BOOLS), 'BOOL');
-    this.setInputsInline(true);
-    // Assign 'this' to a variable for use in the tooltip closure below.
-    var thisBlock = this;
-    this.setTooltip(function() {
-      var mode = thisBlock.getFieldValue('BOOL');
-      var TOOLTIPS = {
-        'true': "Returns the value 'true'",
-        'false': "Returns the value 'false'"
-      };
-      return TOOLTIPS[mode];
-    });
-  }
-};
-
-Blockly.Blocks['airbit_logical_and'] = {
-  helpUrl: Blockly.Blocks.airbit.HELPURL,
-  init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
-    this.appendDummyInput()
-      .appendField("Logical AND (&&)")
-    this.appendValueInput("VariableA")
-      .setCheck('Boolean')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Variable A");
-    this.appendValueInput("VariableB")
-      .setCheck('Boolean')
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Variable B");
-    this.setOutput(true, 'Boolean');
-    this.setTooltip('Returns \'true\' if \'A\' and \'B\' is logically \'true\'');
-  }
-};
-
-Blockly.Blocks['airbit_continue'] = {
-  helpUrl: Blockly.Blocks.airbit.HELPURL,
-  init: function() {
-    this.setColour(Blockly.Blocks.variables.HUE);
-    this.appendDummyInput()
-      .appendField("Restart Loop");
-    this.setPreviousStatement(true, null);
-    this.setTooltip('Goes to the start of the parent loop. Work already done will not be reset.');
-  }
-};
-
 Blockly.Blocks['airbit_blink_led'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {

@@ -462,3 +462,51 @@ Blockly.Blocks['logic_ternary'] = {
     this.prevParentConnection_ = parentConnection;
   }
 };
+
+Blockly.Blocks['logic_true_false'] = {
+  /**
+   * Block for basic arithmetic operator.
+   * @this Blockly.Block
+   */
+  init: function() {
+    var BOOLS =
+      [['true', 'true'],
+        ['false', 'false']];
+    this.setHelpUrl(Blockly.Msg.LOGIC_NULL_HELPURL);
+    this.setColour(Blockly.Blocks.logic.HUE);
+    this.setOutput(true, 'Boolean');
+    this.appendDummyInput()
+      .appendField("Bool")
+      .appendField(new Blockly.FieldDropdown(BOOLS), 'BOOL');
+    this.setInputsInline(true);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    this.setTooltip(function() {
+      var mode = thisBlock.getFieldValue('BOOL');
+      var TOOLTIPS = {
+        'true': "Returns the value 'true'",
+        'false': "Returns the value 'false'"
+      };
+      return TOOLTIPS[mode];
+    });
+  }
+};
+
+Blockly.Blocks['logic_logical_and'] = {
+  helpUrl: Blockly.Msg.LOGIC_OPERATION_HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.logic.HUE);
+    this.appendDummyInput()
+      .appendField("Logical AND (&&)")
+    this.appendValueInput("VariableA")
+      .setCheck('Boolean')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Variable A");
+    this.appendValueInput("VariableB")
+      .setCheck('Boolean')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Variable B");
+    this.setOutput(true, 'Boolean');
+    this.setTooltip('Returns \'true\' if \'A\' and \'B\' is logically \'true\'');
+  }
+};
