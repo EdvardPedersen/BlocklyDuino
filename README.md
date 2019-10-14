@@ -80,3 +80,10 @@ Copyright (C) 2012~2015 Fred Lin gasolin+blockly@gmail.com
  * You may obtain a copy of the License at
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
+
+# Closure - Library
+If you want to build the compressed versions you need to collect the [Closure Library](https://github.com/google/closure-library/releases) and place it in root repository folder.
+
+Build it using the `blockly/build.py` program, running on python2.
+
+If you want to use python3 to build, you need to go into `closure-library/closure/bin` folder and run the `2to3` python program to upgrade it from v2 to v3. Then run the `blockly/build3.py` program.
