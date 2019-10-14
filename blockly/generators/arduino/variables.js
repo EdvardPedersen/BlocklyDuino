@@ -40,18 +40,6 @@ Blockly.Arduino.variables_get = function() {
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino.variables_declare = function() {
-  // Variable setter.
-  var dropdown_type = this.getFieldValue('TYPE');
-  //TODO: settype to variable
-  var argument0 = Blockly.Arduino.valueToCode(this, 'VALUE',
-      Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),
-      Blockly.Variables.NAME_TYPE);
-  Blockly.Arduino.setups_['setup_var' + varName] = varName + ' = ' + argument0 + ';\n';
-  return '';
-};
-
 Blockly.Arduino.variables_set = function() {
   // Variable setter.
   var argument0 = Blockly.Arduino.valueToCode(this, 'VALUE',
@@ -63,4 +51,28 @@ Blockly.Arduino.variables_set = function() {
     Blockly.Arduino.variableTypeDB_[varName] = "int";
   }
   return varName + ' = ' + argument0 + ';\n';
+};
+
+Blockly.Arduino.variables_declare = function() {
+  // Variable setter.
+  var variable_type = this.getFieldValue('TYPE');
+  
+  var argument0 = Blockly.Arduino.valueToCode(this, 'VALUE',
+      Blockly.Arduino.ORDER_ASSIGNMENT);
+  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),
+      Blockly.Variables.NAME_TYPE);
+  
+  if (variable_type.includes("AirBitDateTimeClass")) {
+    Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
+  }
+
+  Blockly.Arduino.variableTypeDB_[varName] = variable_type;
+
+  var code = varName;
+  if(argument0.toString()){
+    code += ' = ';
+    code += argument0.toString();
+  }
+  code += ';\n'
+  return code;
 };

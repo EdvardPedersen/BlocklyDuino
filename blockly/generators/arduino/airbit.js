@@ -1,31 +1,6 @@
 //goog.provide('Blockly.Arduino.airbit');
 
 goog.require('Blockly.Arduino');
-goog.require('Blockly.Arduino.variables');
-
-Blockly.Arduino.airbit_declare_variable = function() {
-  // Variable setter.
-  var variable_type = this.getFieldValue('TYPE');
-  
-  var argument0 = Blockly.Arduino.valueToCode(this, 'VALUE',
-      Blockly.Arduino.ORDER_ASSIGNMENT);
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('NAME'),
-      Blockly.Variables.NAME_TYPE);
-  
-  if (variable_type.includes("AirBitDateTimeClass")) {
-    Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
-  }
-
-  Blockly.Arduino.variableTypeDB_[varName] = variable_type;
-
-  var code = varName;
-  if(argument0.toString()){
-    code += ' = ';
-    code += argument0.toString();
-  }
-  code += ';\n'
-  return code;
-};
 
 Blockly.Arduino.airbit_true_false = function() {
   var isTrue = this.getFieldValue('BOOL');
