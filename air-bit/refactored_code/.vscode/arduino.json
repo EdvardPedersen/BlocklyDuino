@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "air_bit_refactor1/air_bit_refactor1.ino",
+    "port": "/dev/ttyUSB0"
+}
