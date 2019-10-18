@@ -60,7 +60,7 @@ Blockly.Arduino.airbit_gps_update_data = function() {
   var code = "gpsCom.listen();\n";
   code += "airUtils.WaitOnGpsEncoding(gps, gpsCom);\n";
 
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return code;
 };
 
 
