@@ -10,6 +10,7 @@
   <script type="text/javascript" src="spin.js"></script>
   <script type="text/javascript" src="FileSaver.min.js"></script>
   <script type="text/javascript" src="blockly_helper.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
   <script>
 
 /**
@@ -26,6 +27,7 @@ var selected = 'blocks';
  */
 function tabClick(clickedName) {
   // If the XML tab was open, save and render the content.
+  
   if (document.getElementById('tab_xml').className == 'tabon') {
     var xmlTextarea = document.getElementById('content_xml');
     var xmlText = xmlTextarea.value;
@@ -45,6 +47,7 @@ function tabClick(clickedName) {
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
     }
   }
+  
 
   if (document.getElementById('tab_blocks').className == 'tabon') {
     Blockly.mainWorkspace.setVisible(false);
@@ -301,6 +304,7 @@ function init() {
               <button type="button" onclick="resetClick()">Reset</button>
               <button onclick="discard()">Discard</button>
               <button onclick="saveCode()">Save Arduino Code</button>
+              <button onclick="download_project_code()">Download Project</button>
               <button onclick="save()">Save XML</button>
               <button id="fakeload">Load XML</button>
               <input type="file" id="load" style="display: none;"/>
@@ -318,13 +322,15 @@ function init() {
   <textarea id="content_arduino" class="content" readonly wrap="off"></textarea>
   <textarea id="content_xml" class="content" wrap="off"></textarea>
 
-  <xml id="toolbox" style="display: none">
+  <xml id="toolbox" style="display: none;">
     <category name="Logic">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
       <block type="logic_operation"></block>
+      <block type="logic_logical_and"></block>
       <block type="logic_negate"></block>
       <block type="logic_null"></block>
+      <block type="logic_true_false"></block>
     </category>
     <category name="Control">
       <block type="base_delay">
@@ -347,6 +353,7 @@ function init() {
         </value>
       </block>
       <block type="controls_whileUntil"></block>
+      <block type="controls_continue"></block>
     </category>
     <category name="Math">
       <block type="math_number"></block>
@@ -362,7 +369,8 @@ function init() {
     <category name="Text">
       <block type="text"></block>
     </category>
-    <category name="Variables" custom="VARIABLE"></category>
+    <category name="Variables" custom="VARIABLE">
+    </category>
     <category name="Functions" custom="PROCEDURE"></category>
     <sep></sep>
     <category name="Input/Output">
@@ -404,47 +412,86 @@ function init() {
       </block>
       <block type="servo_read_degrees"></block>
     </category>
-    <category name="Grove Analog">
-      <block type="grove_rotary_angle"></block>
-      <block type="grove_temporature_sensor"></block>
-      <block type="grove_sound_sensor"></block>
-      <block type="grove_thumb_joystick"></block>
-    </category>
-    <category name="Grove">
-      <block type="grove_led"></block>
-      <block type="grove_button"></block>
-      <block type="grove_relay"></block>
-      <block type="grove_tilt_switch"></block>
-      <block type="grove_piezo_buzzer"></block>
-      <block type="grove_pir_motion_sensor"></block>
-      <block type="grove_line_finder"></block>
-      <block type="grove_rgb_led"></block>
-      <block type="grove_ultrasonic_ranger"></block>
-    </category>
-    <category name="Grove LCD">
-      <block type="grove_serial_lcd_print">
-        <value name="TEXT">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-        </value>
-        <value name="TEXT2">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-        </value>
+    <sep></sep>
+    <category name="Air:Bit; LED">
+      <block type="airbit_blink_led">
         <value name="DELAY_TIME">
           <block type="math_number">
-            <field name="NUM">1000</field>
+            <field name="NUM">500</field>
           </block>
         </value>
       </block>
-      <block type="grove_serial_lcd_power"></block>
-      <block type="grove_serial_lcd_effect"></block>
     </category>
-    <category name="Grove Motor">
-      <block type="grove_motor_shield"></block>
+    <category name="Air:Bit; GPS">
+      <block type="airbit_get_datetime"></block>
+      <block type="airbit_gps_location_is_valid"></block>
+      <block type="airbit_gps_location_is_updated"></block>
+      <block type="airbit_gps_location_latitude"></block>
+      <block type="airbit_gps_location_longitude"></block>
+      <block type="airbit_gps_update_data"></block>
     </category>
-  </xml>
+    <category name="Air:Bit; DHT">
+      <block type="airbit_dht_temperature"></block>
+      <block type="airbit_dht_humidity"></block>
+    </category>
+    <category name="Air:Bit; SDS">
+      <block type="airbit_sds_pm_readings">
+        <value name="PM10">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="PM25">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="Air:Bit; SD">
+      <block type="airbit_sd_store_readings">
+        <value name="FILENAME">
+          <block type="text">
+            <field name="TEXT">filename.txt</field>
+          </block>
+        </value>
+        <value name="AIRBITDATETIME">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="LATITUDE">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="LONGITUDE">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="PM10">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="PM25">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="HUMIDITY">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="TEMPERATURE">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+    </category>
+  </div>
 </body>
 </html>

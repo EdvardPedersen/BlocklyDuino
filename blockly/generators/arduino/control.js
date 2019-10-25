@@ -23,7 +23,7 @@
  */
 'use strict';
 
-goog.provide('Blockly.Arduino.loops');
+//goog.provide('Blockly.Arduino.loops');
 
 goog.require('Blockly.Arduino');
 
@@ -92,3 +92,9 @@ Blockly.Arduino.controls_whileUntil = function() {
   }
   return 'while (' + argument0 + ') {\n' + branch + '}\n';
 }
+
+Blockly.Arduino.controls_continue = function() {
+  var code = 'continue;\n'
+  
+  return code;
+};

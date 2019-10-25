@@ -118,16 +118,21 @@ Blockly.Variables.flyoutCategory = function(blocks, gaps, margin, workspace) {
     var setBlock = Blockly.Blocks['variables_set'] ?
         Blockly.Block.obtain(workspace, 'variables_set') : null;
     setBlock && setBlock.initSvg();
+    var declareBlock = Blockly.Blocks['variables_declare'] ?
+      Blockly.Block.obtain(workspace, 'variables_declare') : null;
+      declareBlock && declareBlock.initSvg();
     if (variableList[i] === null) {
-      defaultVariable = (getBlock || setBlock).getVars()[0];
+      defaultVariable = (getBlock || setBlock || declareBlock).getVars()[0];
     } else {
       getBlock && getBlock.setFieldValue(variableList[i], 'VAR');
       setBlock && setBlock.setFieldValue(variableList[i], 'VAR');
+      declareBlock && declareBlock.setFieldValue(variableList[i], 'VAR');
     }
     setBlock && blocks.push(setBlock);
     getBlock && blocks.push(getBlock);
-    if (getBlock && setBlock) {
-      gaps.push(margin, margin * 3);
+    declareBlock && blocks.push(declareBlock);
+    if (getBlock && setBlock && declareBlock) {
+      gaps.push(margin, margin * 3, margin * 9);
     } else {
       gaps.push(margin * 2);
     }

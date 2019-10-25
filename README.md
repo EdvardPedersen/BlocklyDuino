@@ -45,7 +45,7 @@ python arduino_web_server.py
 
 You can optionally specify the port with `--port=COM3` (or `--port=/dev/tty.foo` on Linux and Mac); if you don't, it will try and guess which port to use.
 
-When the webserver is running, you can access BlocklyDuino itself on [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
+When the webserver is running, you can access BlocklyDuino itself on [http://0.0.0.1:8080/](http://0.0.0.1:8080/).
 
 ### Usage
 
@@ -80,3 +80,10 @@ Copyright (C) 2012~2015 Fred Lin gasolin+blockly@gmail.com
  * You may obtain a copy of the License at
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
+
+# Closure - Library
+If you want to build the compressed versions you need to collect the [Closure Library](https://github.com/google/closure-library/releases) and place it in root repository folder.
+
+Build it using the `blockly/build.py` program, running on python2.
+
+If you want to use python3 to build, you need to go into `closure-library/closure/bin` folder and run the `2to3` python program to upgrade it from v2 to v3. Then run the `blockly/build3.py` program.
