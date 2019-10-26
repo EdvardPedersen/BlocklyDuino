@@ -10,7 +10,7 @@ class AirBitUtilsClass {       // The class
         float pm10, float pm25, float humidity, float temperature ) {
       
       // Print: Time,
-      airTime.PrintFormat(file);
+      airTime.PrintFile(file);
 
       file.print(",")
       file.flush(); // Force saving data to SD-card

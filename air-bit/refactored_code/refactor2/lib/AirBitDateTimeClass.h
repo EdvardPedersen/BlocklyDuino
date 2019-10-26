@@ -17,7 +17,7 @@ class AirBitDateTimeClass {       // The class
         int minute;
         int second;
 
-        void PrintDebug();
-        void PrintFormated(File file);
+        void PrintSerial();
+        void PrintFile(File file);
 };
 #endif AIRBITDATETIME

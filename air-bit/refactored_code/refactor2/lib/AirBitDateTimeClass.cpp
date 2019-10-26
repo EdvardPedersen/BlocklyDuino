@@ -11,7 +11,7 @@ class AirBitDateTimeClass {       // The class
     int minute;
     int second;
 
-    void PrintDebug() {
+    void PrintSerial() {
       Serial.print(day);
       Serial.print(".");
       Serial.print(month);
@@ -25,7 +25,7 @@ class AirBitDateTimeClass {       // The class
       Serial.print(second);
     }
 
-    void PrintFormated(File file)  {
+    void PrintFile(File file)  {
       // YEAR
       if (year < 10) {
       file.print("000");
