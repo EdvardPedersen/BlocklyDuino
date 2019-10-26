@@ -224,45 +224,44 @@ void loop() {
   // TIMEZONE
   file.print("Z");
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Latitude,
   file.print(gps.location.lat(), 6); // Latitude in degrees
   
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Longitude,
   file.print(gps.location.lng(), 6); // Longitude in degrees
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: PM10,
   file.print(pm10);
   
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: PM25,
   file.print(pm25);
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Humidity,
   file.print(humidity);
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Temperature\n
   file.print(temperature);
 
-  file.println()
+  file.println();
   file.flush(); // Force saving data to SD-card
 
   delay(1000); // Wait a second.
 }
-
