@@ -46,6 +46,22 @@ Blockly.Blocks['airbit_get_datetime'] = {
   }
 };
 
+Blockly.Blocks['airbit_print_datetime'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.GpsHUE);
+    this.appendDummyInput()
+      .appendField("Get DateTime")
+      .appendField(new Blockly.FieldImage("https://image.flaticon.com/icons/svg/2097/2097131.svg", 64, 64))
+      .appendField(new Blockly.FieldImage("https://www.jaycar.co.nz/medias/sys_master/images/9292330008606/XC3712-arduino-compatible-gps-receiver-moduleImageMain-515.jpg", 64, 64))
+    this.appendValueInput("AirBitDateTime")
+      .setCheck('AirBitDateTimeClass')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Variable A");
+    this.setTooltip("Takes in an 'AirBitDateTimeClass' object and uses its printing methdo.");
+  }
+};
+
 Blockly.Blocks['airbit_gps_update_data'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {

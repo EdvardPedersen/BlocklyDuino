@@ -38,6 +38,17 @@ Blockly.Arduino.airbit_get_datetime = function() {
 
   var code = 'airbitUtils.GetDateTime(gps)';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
+}; 
+
+Blockly.Arduino.airbit_print_datetime = function() {
+  var datetime = Blockly.Arduino.valueToCode(this, 'AirBitDateTime', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['define_tinygps++'] = '#include <TinyGPS++.h>';
+  Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>';
+  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
+
+  var code = datetime + '.PrintSerial()';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino.airbit_gps_update_data = function() {

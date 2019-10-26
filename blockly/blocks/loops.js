@@ -317,13 +317,13 @@ Blockly.Blocks['controls_flow_statements'] = {
   }
 };
 
-Blockly.Blocks['controls_continue'] = {
+Blockly.Blocks['controls_return'] = {
   helpUrl: Blockly.Msg.CONTROLS_FLOW_STATEMENTS_HELPURL,
   init: function() {
     this.setColour(Blockly.Blocks.loops.HUE);
     this.appendDummyInput()
-      .appendField("Restart Loop");
+      .appendField("Ends function");
     this.setPreviousStatement(true, null);
-    this.setTooltip('Goes to the start of the parent loop. Work already done will not be reset.');
+    this.setTooltip('Ends the function. Goes to the start of the `loop` for arduinos.');
   }
 };
