@@ -33,3 +33,9 @@ Blockly.Arduino.text = function() {
   var code = Blockly.Arduino.quote_(this.getFieldValue('TEXT'));
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+Blockly.Arduino.unsafe_text = function() {
+  // Text value.
+  var code = this.getFieldValue('TEXT');
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
