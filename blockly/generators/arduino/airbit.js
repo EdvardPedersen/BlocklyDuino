@@ -27,7 +27,7 @@ Blockly.Arduino.airbit_get_datetime = function() {
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
 
-  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx+'\n';
+  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx;
   Blockly.Arduino.definitions_['define_gpstx'] = '#define GPS_TX '+gps_tx+'\n'; 
 
   Blockly.Arduino.definitions_['var_gpscom'] = 'SoftwareSerial gpsCom(GPS_RX, GPS_TX);';
@@ -59,7 +59,7 @@ Blockly.Arduino.airbit_gps_update_data = function() {
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
 
-  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx+'\n';
+  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx;
   Blockly.Arduino.definitions_['define_gpstx'] = '#define GPS_TX '+gps_tx+'\n'; 
 
   Blockly.Arduino.definitions_['var_gpscom'] = 'SoftwareSerial gpsCom(GPS_RX, GPS_TX);';
@@ -82,7 +82,7 @@ Blockly.Arduino.airbit_gps_location_is_valid = function() {
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
 
-  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx+'\n';
+  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx;
   Blockly.Arduino.definitions_['define_gpstx'] = '#define GPS_TX '+gps_tx+'\n'; 
 
   Blockly.Arduino.definitions_['var_gpscom'] = 'SoftwareSerial gpsCom(GPS_RX, GPS_TX);';
@@ -102,7 +102,7 @@ Blockly.Arduino.airbit_gps_location_is_updated = function() {
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
 
-  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx+'\n';
+  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx;
   Blockly.Arduino.definitions_['define_gpstx'] = '#define GPS_TX '+gps_tx+'\n'; 
 
   Blockly.Arduino.definitions_['var_gpscom'] = 'SoftwareSerial gpsCom(GPS_RX, GPS_TX);';
@@ -121,7 +121,7 @@ Blockly.Arduino.airbit_gps_location_latitude = function() {
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
 
-  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx+'\n';
+  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx;
   Blockly.Arduino.definitions_['define_gpstx'] = '#define GPS_TX '+gps_tx+'\n'; 
 
   Blockly.Arduino.definitions_['var_gpscom'] = 'SoftwareSerial gpsCom(GPS_RX, GPS_TX);';
@@ -140,7 +140,7 @@ Blockly.Arduino.airbit_gps_location_longitude = function() {
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
 
-  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx+'\n';
+  Blockly.Arduino.definitions_['define_gpsrx'] = '#define GPS_RX '+gps_rx;
   Blockly.Arduino.definitions_['define_gpstx'] = '#define GPS_TX '+gps_tx+'\n'; 
 
   Blockly.Arduino.definitions_['var_gpscom'] = 'SoftwareSerial gpsCom(GPS_RX, GPS_TX);';
@@ -154,7 +154,7 @@ Blockly.Arduino.airbit_gps_location_longitude = function() {
 
 Blockly.Arduino.airbit_dht_temperature = function(){
   Blockly.Arduino.definitions_['define_dht'] = '#include <DHT.h>';
-  Blockly.Arduino.definitions_['define_dhtpin'] = '#define DHTPIN 9\n';
+  Blockly.Arduino.definitions_['define_dhtpin'] = '#define DHTPIN 9;\n';
 
   Blockly.Arduino.definitions_['var_dht'] = 'DHT dht22(DHTPIN, DHT22)';
   
@@ -166,7 +166,7 @@ Blockly.Arduino.airbit_dht_humidity = function(){
   Blockly.Arduino.definitions_['define_dht'] = '#include <DHT.h>\n';
   Blockly.Arduino.definitions_['define_dhtpin'] = '#define DHTPIN 9\n';
 
-  Blockly.Arduino.definitions_['var_dht'] = 'DHT dht22(DHTPIN, DHT22)';
+  Blockly.Arduino.definitions_['var_dht'] = 'DHT dht22(DHTPIN, DHT22);';
   
   var code = 'dht22.readHumidity()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -176,11 +176,11 @@ Blockly.Arduino.airbit_dht_humidity = function(){
 Blockly.Arduino.airbit_sds_pm_readings = function(){
   Blockly.Arduino.definitions_['define_sds011'] = '#include <SDS011.h>\n';
 
-  var tx = Blockly.Arduino.valueToCode(this, 'PM_TX', Blockly.Arduino.ORDER_ATOMIC);
-  var rx = Blockly.Arduino.valueToCode(this, 'PM_RX', Blockly.Arduino.ORDER_ATOMIC);
+  var pm_rx = this.getFieldValue('PIN_RX');
+  var pm_tx = this.getFieldValue('PIN_TX');
 
-  Blockly.Arduino.definitions_['define_pmtx'] = '#define PM_TX '+tx;
-  Blockly.Arduino.definitions_['define_pmrx'] = '#define PM_RX '+rx+'\n';
+  Blockly.Arduino.definitions_['define_pmrx'] = '#define SDS_RX '+pm_rx;
+  Blockly.Arduino.definitions_['define_pmtx'] = '#define SDS_TX '+pm_tx+'\n';
 
   Blockly.Arduino.definitions_['var_sds011'] = 'SDS011 sds;';
   
@@ -199,9 +199,9 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
   Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
 
-  var pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+  var sd_pin = this.getFieldValue('PIN');
 
-  Blockly.Arduino.definitions_['define_sdpin'] = '#define SD_CS_PIN '+pin+'\n';
+  Blockly.Arduino.definitions_['define_sdpin'] = '#define SD_CS_PIN '+sd_pin+'\n';
 
   Blockly.Arduino.definitions_['var_file'] = 'File file;';
 
