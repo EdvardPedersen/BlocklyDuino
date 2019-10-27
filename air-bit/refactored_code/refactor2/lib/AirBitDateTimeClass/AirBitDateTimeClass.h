@@ -1,15 +1,21 @@
-#ifndef AIRBITDATETIME
-#define AIRBITDATETIME
+/*
+  AirBitDateTimeClass.h - Library for easy interaction with an Air:Bit unit.
+  Created by Håkon Wallann, Oktober 27, 2019.
+  For use in the UiT Air:Bit project.
+*/
+
+#ifndef AirBitDateTimeClass.h
+#define AirBitDateTimeClass.h
+
+#include "Arduino.h"
 
 #include <SD.h>
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
-
-using namespace airbit;
-
 class AirBitDateTimeClass {       // The class
     public:             // Access specifier
+        AirBitDateTimeClass()
         int day;
         int month;
         int year;
@@ -20,4 +26,4 @@ class AirBitDateTimeClass {       // The class
         void PrintSerial();
         void PrintFile(File file);
 };
-#endif AIRBITDATETIME
+#endif

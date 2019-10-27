@@ -1,5 +1,12 @@
-#ifndef AIRBITUTILS
-#define AIRBITUTILS
+/*
+  AirBitUtilsClass.h - Library for easy interaction with an Air:Bit unit.
+  Created by Håkon Wallann, Oktober 27, 2019.
+  For use in the UiT Air:Bit project.
+*/
+#ifndef AirBitUtilsClass.h
+#define AirBitUtilsClass.h
+
+#include "Arduino.h"
 
 #include <SD.h>
 #include <SoftwareSerial.h>
@@ -7,10 +14,9 @@
 
 #include "AirBitDateTimeClass"
 
-using namespace airbit;
-
 class AirBitUtilsClass {       // The class
   public:             // Access specifier
+    AirBitUtilsClass()
     void PrintReadingsToSd(File file, AirBitDateTimeClass airTime, double lat, double lng,
       float pm10, float pm25, float humidity, float temperature );
 
@@ -25,4 +31,4 @@ class AirBitUtilsClass {       // The class
     void PrintDebugGps(double lat, double lng);
 
 };
-#endif AIRBITDATETIME
+#endif
