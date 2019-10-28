@@ -4,65 +4,65 @@
   For use in the UiT Air:Bit project.
 */
 #include "Arduino.h"
+#include "AirBitUtilsClass.h"
 #include <SD.h>
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
-#include "AirBitDateTimeClass"
+#include <AirBitDateTimeClass.h>
 
 AirBitUtilsClass::AirBitUtilsClass()
 {
-  return;
 }
 void AirBitUtilsClass::PrintReadingsToSd(File file, AirBitDateTimeClass airTime, double lat, double lng,
     float pm10, float pm25, float humidity, float temperature ) {
-  
+
   // Print: Time,
   airTime.PrintFile(file);
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Latitude,
   file.print(lat, 6); // Latitude in degrees
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Longitude,
   file.print(lng, 6); // Longitude in degrees
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: PM10,
   file.print(pm10);
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: PM25,
   file.print(pm25);
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Humidity,
   file.print(humidity);
 
-  file.print(",")
+  file.print(",");
   file.flush(); // Force saving data to SD-card
 
   // Print: Temperature\n
   file.print(temperature);
 
-  file.println()
+  file.println();
 }
 
-void AirBitUtilsClass::PrintDebugReadings(float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
+void AirBitUtilsClass::PrintDebugReadings(AirBitDateTimeClass airTime, float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
   PrintDebugHumidityTemperature(humidity, temperature);
   PrintDebugDust(pm10, pm25);
-  print_debug_gps(lat, lng);
+  PrintDebugGps(airTime, lat, lng);
 }
 
 AirBitDateTimeClass AirBitUtilsClass::GetDateTime(TinyGPSPlus gps) {
@@ -93,12 +93,12 @@ void AirBitUtilsClass::WaitOnGpsEncoding(TinyGPSPlus gps, SoftwareSerial gpsCom)
     }
     gpsEncodeComplete = gps.encode(gpsCom.read());
     if (!gpsEncodeComplete) {
-      // Data is incomplete, 
+      // Data is incomplete,
       // Jump to next iteration and try again
       continue;
     }
   } while (!gpsEncodeComplete); // Loop until gps data was successfully read and encoded from GPS module
-};
+}
 
 void AirBitUtilsClass::PrintDebugHumidityTemperature(float humidity, float temperature) {
   Serial.print("Humidity: ");
@@ -120,9 +120,9 @@ void AirBitUtilsClass::PrintDebugDust(float pm10, float pm25) {
   Serial.println();
 }
 
-void AirBitUtilsClass::PrintDebugGps(double lat, double lng) {
+void AirBitUtilsClass::PrintDebugGps(AirBitDateTimeClass airTime, double lat, double lng) {
   Serial.print("Time: ");
-  airTime.PrintDebug();
+  airTime.PrintSerial();
 
   Serial.print("\t");
 

@@ -4,8 +4,8 @@
   For use in the UiT Air:Bit project.
 */
 
-#ifndef AirBitDateTimeClass.h
-#define AirBitDateTimeClass.h
+#ifndef AirBitDateTimeClass_h
+#define AirBitDateTimeClass_h
 
 #include "Arduino.h"
 
@@ -13,9 +13,10 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
-class AirBitDateTimeClass {       // The class
+class AirBitDateTimeClass
+{       // The class
     public:             // Access specifier
-        AirBitDateTimeClass()
+        AirBitDateTimeClass();
         int day;
         int month;
         int year;

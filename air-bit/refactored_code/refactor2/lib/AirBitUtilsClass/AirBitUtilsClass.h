@@ -3,8 +3,8 @@
   Created by Håkon Wallann, Oktober 27, 2019.
   For use in the UiT Air:Bit project.
 */
-#ifndef AirBitUtilsClass.h
-#define AirBitUtilsClass.h
+#ifndef AirBitUtilsClass_h
+#define AirBitUtilsClass_h
 
 #include "Arduino.h"
 
@@ -12,15 +12,16 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
-#include "AirBitDateTimeClass"
+#include <AirBitDateTimeClass.h>
 
-class AirBitUtilsClass {       // The class
+class AirBitUtilsClass
+{       // The class
   public:             // Access specifier
-    AirBitUtilsClass()
+    AirBitUtilsClass();
     void PrintReadingsToSd(File file, AirBitDateTimeClass airTime, double lat, double lng,
       float pm10, float pm25, float humidity, float temperature );
 
-    void PrintDebugReadings(float humidity, float temperature, float pm10, float pm25, double lat, double lng);
+    void PrintDebugReadings(AirBitDateTimeClass airTime, float humidity, float temperature, float pm10, float pm25, double lat, double lng);
 
     AirBitDateTimeClass GetDateTime(TinyGPSPlus gps);
     void BlinkLed(int lightPin, int delayTime = 500);
@@ -28,7 +29,7 @@ class AirBitUtilsClass {       // The class
   private:
     void PrintDebugHumidityTemperature(float humidity, float temperature);
     void PrintDebugDust(float pm10, float pm25);
-    void PrintDebugGps(double lat, double lng);
+    void PrintDebugGps(AirBitDateTimeClass airTime, double lat, double lng);
 
 };
 #endif

@@ -17,6 +17,7 @@ AirBitDateTimeClass::AirBitDateTimeClass()
     int minute;
     int second;
 }
+
 void AirBitDateTimeClass::PrintSerial() {
   Serial.print(day);
   Serial.print(".");
