@@ -25,7 +25,7 @@ class AirBitUtilsClass
 
     AirBitDateTimeClass GetDateTime(TinyGPSPlus gps);
     void BlinkLed(int lightPin, int delayTime = 500);
-    void WaitOnGpsEncoding(TinyGPSPlus gps, SoftwareSerial gpsCom);
+    void WaitOnGpsEncoding(TinyGPSPlus *gps, SoftwareSerial *gpsCom);
   private:
     void PrintDebugHumidityTemperature(float humidity, float temperature);
     void PrintDebugDust(float pm10, float pm25);
