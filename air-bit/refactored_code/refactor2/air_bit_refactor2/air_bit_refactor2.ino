@@ -94,7 +94,9 @@ void setup_fileWriting(const char filename[]) {
 void loop() {
   // GPS
   gpsCom.listen();
-  wait_on_gps_encoding();
+
+  airUtils.WaitOnGpsEncoding(&gps, &gpsCom);
+  //wait_on_gps_encoding(&gps, &gpsCom);
 
   bool gpsValid = gps.location.isValid();
   bool gpsUpdated = gps.location.isUpdated();
@@ -153,21 +155,27 @@ void loop() {
   delay(2500);
 }
 
-void wait_on_gps_encoding() {
+void wait_on_gps_encoding(TinyGPSPlus *gpsVar, SoftwareSerial *gpsComVar) {
   bool gpsEncodeComplete = false;
+  Serial.println("Meep");
   do {
-    if (!gpsCom.available()) {
+    if (!(*gpsComVar).available()) {
       // No new data available.
       // Immediately jump to next iteration
+      Serial.println("Not Available");
+      delay(100);
       continue;
     }
-    gpsEncodeComplete = gps.encode(gpsCom.read());
+    gpsEncodeComplete = (*gpsVar).encode((*gpsComVar).read());
     if (!gpsEncodeComplete) {
-      // Data is incomplete, 
+      // Data is incomplete,
       // Jump to next iteration and try again
+      Serial.println("Not Complete");
+      delay(100);
       continue;
     }
   } while (!gpsEncodeComplete); // Loop until gps data was successfully read and encoded from GPS module
+  return;
 }
 
 void print_debug_readings(AirBitDateTimeClass airbitDateTime, float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
@@ -176,10 +184,10 @@ void print_debug_readings(AirBitDateTimeClass airbitDateTime, float humidity, fl
 
 void print_readings_to_sd(AirBitDateTimeClass airbitDateTime, double lat, double lng,
    float pm10, float pm25, float humidity, float temperature ) {
-  
+
   airUtils.PrintReadingsToSd(file, airbitDateTime, lat, lng,
    pm10, pm25, humidity, temperature);
-  
+
   file.flush(); // Force saving data to SD-card
 
 }

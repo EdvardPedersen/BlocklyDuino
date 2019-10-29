@@ -195,6 +195,130 @@ Blockly.Arduino.airbit_sds_pm_readings = function(){
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino.airbit_sd_file_print = function(){
+  Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+
+  var sd_pin = this.getFieldValue('PIN');
+
+  Blockly.Arduino.definitions_['define_sdpin'] = '#define SD_CS_PIN '+sd_pin+'\n';
+
+  Blockly.Arduino.definitions_['var_file'] = 'File file;';
+
+  Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils;';
+
+  var filename = Blockly.Arduino.valueToCode(this, 'FILENAME', Blockly.Arduino.ORDER_ATOMIC) || '"testfile.txt"';
+  
+  var setup = "// Activate CS-Pin control\n";
+  setup += "  pinMode(SD_CS_PIN, OUTPUT);\n\n";
+  setup += "  // Startup SD-card reader\n";
+  setup += "  SD.begin(SD_CS_PIN);\n\n";
+  setup += "  // Define filename\n";
+  setup += "  char filename[] = "+filename+";\n\n";
+
+  setup += "  if (SD.exists(filename)) {\n";
+  setup += "    // Open existing file for writing and append\n";
+  setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
+  setup += "    file.println(\"--------------------\");\n";
+  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "  } else {\n";
+  setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
+  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "  }\n";
+  setup += "  file.flush(); // Force saving data to SD-card\n";
+
+
+  Blockly.Arduino.setups_['setup_sd'] = setup;
+
+  var input_string = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_ATOMIC) || '';
+
+  var code = "file.print(" + input_string + ");\n";
+
+  return code;
+};
+
+Blockly.Arduino.airbit_sd_file_println = function(){
+  Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+
+  var sd_pin = this.getFieldValue('PIN');
+
+  Blockly.Arduino.definitions_['define_sdpin'] = '#define SD_CS_PIN '+sd_pin+'\n';
+
+  Blockly.Arduino.definitions_['var_file'] = 'File file;';
+
+  Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils;';
+
+  var filename = Blockly.Arduino.valueToCode(this, 'FILENAME', Blockly.Arduino.ORDER_ATOMIC) || '"testfile.txt"';
+  
+  var setup = "// Activate CS-Pin control\n";
+  setup += "  pinMode(SD_CS_PIN, OUTPUT);\n\n";
+  setup += "  // Startup SD-card reader\n";
+  setup += "  SD.begin(SD_CS_PIN);\n\n";
+  setup += "  // Define filename\n";
+  setup += "  char filename[] = "+filename+";\n\n";
+
+  setup += "  if (SD.exists(filename)) {\n";
+  setup += "    // Open existing file for writing and append\n";
+  setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
+  setup += "    file.println(\"--------------------\");\n";
+  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "  } else {\n";
+  setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
+  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "  }\n";
+  setup += "  file.flush(); // Force saving data to SD-card\n";
+
+
+  Blockly.Arduino.setups_['setup_sd'] = setup;
+
+  var input_string = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_ATOMIC) || '';
+
+  var code = "file.print(" + input_string + ");\n";
+
+  return code;
+};
+
+Blockly.Arduino.airbit_sd_file_flush = function(){
+  Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+
+  var sd_pin = this.getFieldValue('PIN');
+
+  Blockly.Arduino.definitions_['define_sdpin'] = '#define SD_CS_PIN '+sd_pin+'\n';
+
+  Blockly.Arduino.definitions_['var_file'] = 'File file;';
+
+  Blockly.Arduino.definitions_['var_airbitutils'] = 'AirBitUtilsClass airbitUtils;';
+
+  var filename = Blockly.Arduino.valueToCode(this, 'FILENAME', Blockly.Arduino.ORDER_ATOMIC) || '"testfile.txt"';
+  
+  var setup = "// Activate CS-Pin control\n";
+  setup += "  pinMode(SD_CS_PIN, OUTPUT);\n\n";
+  setup += "  // Startup SD-card reader\n";
+  setup += "  SD.begin(SD_CS_PIN);\n\n";
+  setup += "  // Define filename\n";
+  setup += "  char filename[] = "+filename+";\n\n";
+
+  setup += "  if (SD.exists(filename)) {\n";
+  setup += "    // Open existing file for writing and append\n";
+  setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
+  setup += "    file.println(\"--------------------\");\n";
+  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "  } else {\n";
+  setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
+  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "  }\n";
+  setup += "  file.flush(); // Force saving data to SD-card\n";
+
+
+  Blockly.Arduino.setups_['setup_sd'] = setup;
+
+  var code = "file.flush();\n"
+  
+  return code;
+};
+
 Blockly.Arduino.airbit_sd_store_readings = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
   Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';

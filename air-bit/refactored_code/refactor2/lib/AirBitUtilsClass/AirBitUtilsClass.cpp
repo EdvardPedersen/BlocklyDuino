@@ -57,6 +57,7 @@ void AirBitUtilsClass::PrintReadingsToSd(File file, AirBitDateTimeClass airTime,
   file.print(temperature);
 
   file.println();
+  file.flush();
 }
 
 void AirBitUtilsClass::PrintDebugReadings(AirBitDateTimeClass airTime, float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
@@ -83,21 +84,24 @@ void AirBitUtilsClass::BlinkLed(int lightPin, int delayTime = 500) {
   digitalWrite(lightPin, LOW);
 }
 
-void AirBitUtilsClass::WaitOnGpsEncoding(TinyGPSPlus gps, SoftwareSerial gpsCom) {
+void AirBitUtilsClass::WaitOnGpsEncoding(TinyGPSPlus *gpsVar, SoftwareSerial *gpsComVar) {
   bool gpsEncodeComplete = false;
   do {
-    if (!gpsCom.available()) {
+    if (!(*gpsComVar).available()) {
       // No new data available.
       // Immediately jump to next iteration
+      delay(100);
       continue;
     }
-    gpsEncodeComplete = gps.encode(gpsCom.read());
+    gpsEncodeComplete = (*gpsVar).encode((*gpsComVar).read());
     if (!gpsEncodeComplete) {
       // Data is incomplete,
       // Jump to next iteration and try again
+      delay(100);
       continue;
     }
   } while (!gpsEncodeComplete); // Loop until gps data was successfully read and encoded from GPS module
+  return;
 }
 
 void AirBitUtilsClass::PrintDebugHumidityTemperature(float humidity, float temperature) {
