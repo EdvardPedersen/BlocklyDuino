@@ -191,6 +191,71 @@ Blockly.Blocks['airbit_sds_pm_readings'] = {
   }
 };
 
+Blockly.Blocks['airbit_sd_file_print'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.SdHUE);
+    this.appendDummyInput()
+      .appendField("SD Print")
+      .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))
+      .appendField("SD CS PIN")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN");
+    this.appendValueInput("FILENAME")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Name of file to write to");
+    this.appendValueInput("INPUT")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Input string");
+    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, null);
+    this.setTooltip('Writes string to a given file.');
+  }
+};
+
+Blockly.Blocks['airbit_sd_file_println'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.SdHUE);
+    this.appendDummyInput()
+      .appendField("SD Println")
+      .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))
+      .appendField("SD CS PIN")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN");
+    this.appendValueInput("FILENAME")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Name of file to write to");
+    this.appendValueInput("INPUT")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Input string");
+    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, null);
+    this.setTooltip('Writes string to a given file.');
+  }
+};
+
+Blockly.Blocks['airbit_sd_file_flush'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.SdHUE);
+    this.appendDummyInput()
+      .appendField("SD Flush")
+      .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))
+      .appendField("SD CS PIN")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN");
+    this.appendValueInput("FILENAME")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Name of file to write to")
+    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, null);
+    this.setTooltip('Writes string to a given file.');
+  }
+};
+
 Blockly.Blocks['airbit_sd_store_readings'] = {
   helpUrl: Blockly.Blocks.airbit.HELPURL,
   init: function() {
@@ -198,13 +263,12 @@ Blockly.Blocks['airbit_sd_store_readings'] = {
     this.appendDummyInput()
       .appendField("SD Storage")
       .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))
-      .appendField("SD PIN")
+      .appendField("SD CS PIN")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN");
     this.appendValueInput("FILENAME")
       .setCheck('String')
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Name of file to write to");
-    this.setPreviousStatement(true, null);
     this.appendValueInput("AIRBITDATETIME")
       .setCheck('String')
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -217,7 +281,6 @@ Blockly.Blocks['airbit_sd_store_readings'] = {
       .setCheck('String')
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Longitude Variable Name");
-    this.setPreviousStatement(true, null);
     this.appendValueInput("PM10")
       .setCheck('String')
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -229,12 +292,13 @@ Blockly.Blocks['airbit_sd_store_readings'] = {
     this.appendValueInput("HUMIDITY")
       .setCheck('String')
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("humididty Variable Name");
+      .appendField("Humididty Variable Name");
     this.appendValueInput("TEMPERATURE")
       .setCheck('String')
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("temperature Variable Name");
+      .appendField("Temperature Variable Name");
     this.setNextStatement(true, null);
+    this.setPreviousStatement(true, null);
     this.setTooltip('Writes all readings to a given file.');
   }
 };
