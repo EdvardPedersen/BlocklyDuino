@@ -198,7 +198,7 @@ Blockly.Blocks['airbit_sd_store_readings'] = {
     this.appendDummyInput()
       .appendField("SD Storage")
       .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))
-      .appendField("SD PIN")
+      .appendField("SD CS PIN")
       .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN");
     this.appendValueInput("FILENAME")
       .setCheck('String')
