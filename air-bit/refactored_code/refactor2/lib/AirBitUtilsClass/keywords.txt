@@ -1,8 +1,8 @@
-AirBitUtilsClass    KEYWORD1
-PrintDebugReadings  KEYWORD2
-GetDateTime KEYWORD2
-BlinkLed    KEYWORD2
+AirBitUtilsClass	KEYWORD1
+PrintDebugReadings	KEYWORD2
+GetDateTime	KEYWORD2
+BlinkLed	KEYWORD2
 WaitOnGpsEncoding   KEYWORD2
-PrintDebugHumidityTemperature   KEYWORD2
-PrintDebugDust  KEYWORD2
-PrintDebugGps   KEYWORD2
+PrintDebugHumidityTemperature	KEYWORD2
+PrintDebugDust	KEYWORD2
+PrintDebugGps	KEYWORD2
