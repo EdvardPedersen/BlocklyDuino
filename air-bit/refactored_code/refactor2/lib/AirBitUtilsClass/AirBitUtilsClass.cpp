@@ -57,6 +57,7 @@ void AirBitUtilsClass::PrintReadingsToSd(File file, AirBitDateTimeClass airTime,
   file.print(temperature);
 
   file.println();
+  file.flush();
 }
 
 void AirBitUtilsClass::PrintDebugReadings(AirBitDateTimeClass airTime, float humidity, float temperature, float pm10, float pm25, double lat, double lng) {
