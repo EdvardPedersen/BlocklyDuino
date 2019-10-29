@@ -21,8 +21,8 @@ Blockly.Arduino.airbit_blink_led = function() {
 Blockly.Arduino.airbit_get_datetime = function() {
   Blockly.Arduino.definitions_['define_tinygps++'] = '#include <TinyGPS++.h>';
   Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>';
-  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include <AirBitDateTimeClass.h>';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';
   
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
@@ -45,7 +45,7 @@ Blockly.Arduino.airbit_print_datetime = function() {
 
   Blockly.Arduino.definitions_['define_tinygps++'] = '#include <TinyGPS++.h>';
   Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>';
-  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include "AirBitDateTimeClass.h';
+  Blockly.Arduino.definitions_['define_airbitdatetimeclass'] = '#include <AirBitDateTimeClass.h>';
 
   var code = datetime + '.PrintSerial();\n';
   return code;
@@ -54,7 +54,7 @@ Blockly.Arduino.airbit_print_datetime = function() {
 Blockly.Arduino.airbit_gps_update_data = function() {
   Blockly.Arduino.definitions_['define_tinygps++'] = '#include <TinyGPS++.h>';
   Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';
   
   var gps_rx = this.getFieldValue('PIN_RX');
   var gps_tx = this.getFieldValue('PIN_TX');
@@ -69,7 +69,7 @@ Blockly.Arduino.airbit_gps_update_data = function() {
   Blockly.Arduino.setups_["setup_gpscom"] = "gpsCom.begin(9600); // Initialize serial communication to GPS antenna\n";
 
   var code = "gpsCom.listen();\n";
-  code += "airUtils.WaitOnGpsEncoding(gps, gpsCom);\n";
+  code += "airbitUtils.WaitOnGpsEncoding(gps, gpsCom);\n";
 
   return code;
 };
@@ -184,7 +184,7 @@ Blockly.Arduino.airbit_sds_pm_readings = function(){
 
   Blockly.Arduino.definitions_['var_sds011'] = 'SDS011 sds;';
   
-  Blockly.Arduino.setups_['setup_sds011'] = 'sds.begin(PM_TX, PM_RX);\n';
+  Blockly.Arduino.setups_['setup_sds011'] = 'sds.begin(SDS_TX, SDS_RX);\n';
 
   var pm25 = Blockly.Arduino.valueToCode(this, 'PM25', Blockly.Arduino.ORDER_ATOMIC);
   var pm10 = Blockly.Arduino.valueToCode(this, 'PM10', Blockly.Arduino.ORDER_ATOMIC);
@@ -197,7 +197,7 @@ Blockly.Arduino.airbit_sds_pm_readings = function(){
 
 Blockly.Arduino.airbit_sd_store_readings = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';
 
   var sd_pin = this.getFieldValue('PIN');
 
