@@ -57,10 +57,10 @@ Blockly.Blocks['airbit_print_datetime'] = {
     this.appendValueInput("AirBitDateTime")
       .setCheck('AirBitDateTimeClass')
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("AirBitDateTime Object A");
+      .appendField("AirBitDateTime Object");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip("Takes in an 'AirBitDateTimeClass' object and uses its printing methdod.");
+    this.setTooltip("Takes in an 'AirBitDateTimeClass' object and uses its printing method.");
   }
 };
 
@@ -253,6 +253,29 @@ Blockly.Blocks['airbit_sd_file_flush'] = {
     this.setNextStatement(true, null);
     this.setPreviousStatement(true, null);
     this.setTooltip('Writes string to a given file.');
+  }
+};
+
+Blockly.Blocks['airbit_sd_file_print_datetime'] = {
+  helpUrl: Blockly.Blocks.airbit.HELPURL,
+  init: function() {
+    this.setColour(Blockly.Blocks.airbit.SdHUE);
+    this.appendDummyInput()
+      .appendField("SD Print DateTime")
+      .appendField(new Blockly.FieldImage("https://images-na.ssl-images-amazon.com/images/I/810pDQKnNxL._SX425_.jpg", 64, 64))
+      .appendField("SD CS PIN")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN");
+    this.appendValueInput("FILENAME")
+      .setCheck('String')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Name of file to write to");
+    this.appendValueInput("AIRBITDATETIME")
+      .setCheck('AirBitDateTimeClass')
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("AirBitDateTime Object");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("Takes in a 'filename' and an 'AirBitDateTimeClass' object and uses its file printing method to print to the file.");
   }
 };
 
