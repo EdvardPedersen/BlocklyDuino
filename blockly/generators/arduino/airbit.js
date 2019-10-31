@@ -157,6 +157,8 @@ Blockly.Arduino.airbit_dht_temperature = function(){
   Blockly.Arduino.definitions_['define_dhtpin'] = '#define DHTPIN 9;\n';
 
   Blockly.Arduino.definitions_['var_dht'] = 'DHT dht22(DHTPIN, DHT22)';
+
+  Blockly.Arduino.setups_["setup_dht"] = "dht22.begin(); // Initialize the Temperature and Humidity sensor\n";
   
   var code = 'dht22.readTemperature()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -168,6 +170,8 @@ Blockly.Arduino.airbit_dht_humidity = function(){
 
   Blockly.Arduino.definitions_['var_dht'] = 'DHT dht22(DHTPIN, DHT22);';
   
+  Blockly.Arduino.setups_["setup_dht"] = "dht22.begin(); // Initialize the Temperature and Humidity sensor\n";
+
   var code = 'dht22.readHumidity()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -230,7 +234,7 @@ Blockly.Arduino.airbit_sd_file_print = function(){
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
-  var input_string = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_ATOMIC) || '';
+  var input_string = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_ATOMIC) || '""';
 
   var code = "file.print(" + input_string + ");\n";
 
@@ -272,9 +276,9 @@ Blockly.Arduino.airbit_sd_file_println = function(){
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
-  var input_string = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_ATOMIC) || '';
+  var input_string = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_ATOMIC) || '""';
 
-  var code = "file.print(" + input_string + ");\n";
+  var code = "file.println(" + input_string + ");\n";
 
   return code;
 };
