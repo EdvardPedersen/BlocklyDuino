@@ -87,3 +87,17 @@ If you want to build the compressed versions you need to collect the [Closure Li
 Build it using the `blockly/build.py` program, running on python2.
 
 If you want to use python3 to build, you need to go into `closure-library/closure/bin` folder and run the `2to3` python program to upgrade it from v2 to v3. Then run the `blockly/build3.py` program.
+
+# Setup Wiki server
+
+```console
+ssh airbit@ifi-web3.ifi.uit.no
+
+cd ./luft
+
+docker stop luft && docker rm luft
+git pull && docker build -t luft .
+docker run -d -p 80:80 --restart=always --name luft -t luft
+
+exit
+```
