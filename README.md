@@ -93,11 +93,11 @@ If you want to use python3 to build, you need to go into `closure-library/closur
 ```console
 ssh airbit@ifi-web3.ifi.uit.no
 
-cd ./luft
+cd ./blocklyduino
 
-docker stop luft && docker rm luft
-git pull && docker build -t luft .
-docker run -d -p 80:80 --restart=always --name luft -t luft
+docker stop blocklyduino && docker rm blocklyduino
+git pull && docker build -t blocklyduino .
+docker run -d -p 8080:8080 --restart=always --name blocklyduino -t blocklyduino
 
 exit
 ```
