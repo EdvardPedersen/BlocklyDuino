@@ -223,11 +223,11 @@ Blockly.Arduino.airbit_sd_file_print = function(){
   setup += "  if (SD.exists(filename)) {\n";
   setup += "    // Open existing file for writing and append\n";
   setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
-  setup += "    file.println(\"--------------------\");\n";
-  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "    Serial.println(\"--------------------\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet på nytt.\");\n";
   setup += "  } else {\n";
   setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
-  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet for første gang.\");\n";
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
@@ -265,11 +265,11 @@ Blockly.Arduino.airbit_sd_file_println = function(){
   setup += "  if (SD.exists(filename)) {\n";
   setup += "    // Open existing file for writing and append\n";
   setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
-  setup += "    file.println(\"--------------------\");\n";
-  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "    Serial.println(\"--------------------\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet på nytt.\");\n";
   setup += "  } else {\n";
   setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
-  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet for første gang.\");\n";
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
@@ -307,11 +307,11 @@ Blockly.Arduino.airbit_sd_file_flush = function(){
   setup += "  if (SD.exists(filename)) {\n";
   setup += "    // Open existing file for writing and append\n";
   setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
-  setup += "    file.println(\"--------------------\");\n";
-  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "    Serial.println(\"--------------------\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet på nytt.\");\n";
   setup += "  } else {\n";
   setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
-  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet for første gang.\");\n";
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
@@ -347,11 +347,11 @@ Blockly.Arduino.airbit_sd_file_print_datetime = function(){
   setup += "  if (SD.exists(filename)) {\n";
   setup += "    // Open existing file for writing and append\n";
   setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
-  setup += "    file.println(\"--------------------\");\n";
-  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "    Serial.println(\"--------------------\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet på nytt.\");\n";
   setup += "  } else {\n";
   setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
-  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet for første gang.\");\n";
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
@@ -393,11 +393,11 @@ Blockly.Arduino.airbit_sd_store_readings = function(){
   setup += "  if (SD.exists(filename)) {\n";
   setup += "    // Open existing file for writing and append\n";
   setup += "    file = SD.open(filename, O_WRITE | O_APPEND);\n";
-  setup += "    file.println(\"--------------------\");\n";
-  setup += "    file.println(\"Filen ble åpnet på nytt.\");\n";
+  setup += "    Serial.println(\"--------------------\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet på nytt.\");\n";
   setup += "  } else {\n";
   setup += "    file = SD.open(filename, O_CREAT | O_WRITE);\n";
-  setup += "    file.println(\"Dette er den første linjen i filen.\");\n";
+  setup += "    Serial.println(\"Filen ble åpnet for første gang.\");\n";
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
