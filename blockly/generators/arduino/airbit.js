@@ -201,7 +201,7 @@ Blockly.Arduino.airbit_sds_pm_readings = function(){
 
 Blockly.Arduino.airbit_sd_file_print = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';
 
   var sd_pin = this.getFieldValue('PIN');
 
@@ -243,7 +243,7 @@ Blockly.Arduino.airbit_sd_file_print = function(){
 
 Blockly.Arduino.airbit_sd_file_println = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';
 
   var sd_pin = this.getFieldValue('PIN');
 
@@ -285,7 +285,7 @@ Blockly.Arduino.airbit_sd_file_println = function(){
 
 Blockly.Arduino.airbit_sd_file_flush = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';
 
   var sd_pin = this.getFieldValue('PIN');
 
@@ -325,7 +325,7 @@ Blockly.Arduino.airbit_sd_file_flush = function(){
 
 Blockly.Arduino.airbit_sd_file_print_datetime = function(){
   Blockly.Arduino.definitions_['define_sd'] = '#include <SD.h>\n';
-  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include "AirBitUtilsClass.h\n';
+  Blockly.Arduino.definitions_['define_airbitutilsclass'] = '#include <AirBitUtilsClass.h>\n';
 
   var sd_pin = this.getFieldValue('PIN');
 
