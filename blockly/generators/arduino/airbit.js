@@ -231,6 +231,7 @@ Blockly.Arduino.airbit_sd_file_print = function(){
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
+  Blockly.Arduino.setups_['setup_serial_' + profile.default.serial] = 'Serial.begin(' + profile.default.serial + ');\n';
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
@@ -273,6 +274,7 @@ Blockly.Arduino.airbit_sd_file_println = function(){
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
+  Blockly.Arduino.setups_['setup_serial_' + profile.default.serial] = 'Serial.begin(' + profile.default.serial + ');\n';
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
@@ -315,6 +317,7 @@ Blockly.Arduino.airbit_sd_file_flush = function(){
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
+  Blockly.Arduino.setups_['setup_serial_' + profile.default.serial] = 'Serial.begin(' + profile.default.serial + ');\n';
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
@@ -355,6 +358,7 @@ Blockly.Arduino.airbit_sd_file_print_datetime = function(){
   setup += "  }\n";
   setup += "  file.flush(); // Force saving data to SD-card\n";
 
+  Blockly.Arduino.setups_['setup_serial_' + profile.default.serial] = 'Serial.begin(' + profile.default.serial + ');\n';
 
   Blockly.Arduino.setups_['setup_sd'] = setup;
 
